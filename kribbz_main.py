@@ -5,7 +5,6 @@
 """
 
 import json
-# import MySQLdb
 
 
 DBTIME_FMT = "%Y-%m-%d %H:%M:%S"
@@ -144,15 +143,21 @@ def error():
     raise HTTPError(403, 2)
 
 
-@app.post("/transfer_money")
-def transfer_money():
+@app.post("/transfer_coin")
+def transfer_coin():
     """
     transfer money
     Arg:
-        data(JSON)
-        {
+        {"kribzz":
+            {"transactionId":"643427363","streeAddress":"700 Rodeo Drive","cityName":"Beverly Hills",
+            "stateCode":"CA","zipCode":"90210","latitude":"34.079678","longitude":"-118.413515",
+            "transactionDateTime":"1523855778",
+            "transactionTotal":"9975000.00",
+            "sellerName":"John Clark",
+            "buyerName":"Emily Stevens",
+            "wallet":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+            }
         }
-
     Return:
        reply(JSON) {"reply":
                  {"msgId":cursor.lastrowid,"error":{"errorCode":PSI.errorCode,"errorMessage":PSI.errorMessage}}
@@ -162,10 +167,10 @@ def transfer_money():
     psi_log_info(request.url)
     psi_log_info("POST: %s" % request.POST.dict)
     try:
-        query_data = parse_request("msg_data")
-        for key in query_data.keys():
+        query_data = parse_request("kribzz")
+        for key,val in query_data.items():
             d = query_data[key]
-            psi_log_debug(' msg_data type = ' + type(d).__name__)
+            psi_log_debug( str(d) + ' = ' + str(val))
     except Exception as errtxt:
         psi_log_error(str(errtxt))
         pass
