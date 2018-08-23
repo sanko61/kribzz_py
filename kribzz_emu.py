@@ -66,7 +66,7 @@ def get(action):
     url = "%s:%s/%s" % (HOST, PORT, action)
     r = requests.get(url, verify=False)
     if r.status_code == 200:
-        return r.json
+        return r.json()
     else:
         raise Exception403(r.json['dsc'].encode("utf8"))
 
@@ -84,7 +84,8 @@ def transfer_coin():
             "transactionDateTime":"1523855778",
             "transactionTotal":"9975000.00",
             "sellerName":"John Clark",
-            "buyerName":"Emily Stevens"
+            "buyerName":"Emily Stevens",
+            "wallet":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
         }
         },
     )
