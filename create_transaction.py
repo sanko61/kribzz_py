@@ -47,13 +47,29 @@ def main():
     # get some random payment_id
     payment_id = get_payment_id()
 
+    kr1 =    {
+        "transactionId":"643427363","streeAddress":"700 Rodeo Drive","cityName":"Beverly Hills",
+        "stateCode":"CA","zipCode":"90210","latitude":"34.079678","longitude":"-118.413515",
+        "transactionDateTime":"1523855778",
+        "transactionTotal":"9975000.00",
+        "sellerName":"John Clark",
+        "buyerName":"Emily Stevens",
+    }
+
+    kribbz_info =json.dumps(kr1)
+    print(kribbz_info)
     # simplewallet' procedure/method to call
     rpc_input = {
         "method": "transfer",
         "params": {"destinations": recipents,
                    "mixin": mixin,
-                   "payment_id" : payment_id}
+                   "payment_id" : payment_id,
+                   "kribbz_info": kribbz_info,
+                   },
+
     }
+
+
 
     # add standard rpc values
     rpc_input.update({"jsonrpc": "2.0", "id": "0"})
