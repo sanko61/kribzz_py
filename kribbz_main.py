@@ -406,7 +406,7 @@ def get_money(amount):
     https://github.com/monero-project/bitmonero/blob/master/src/cryptonote_core/cryptonote_format_utils.cpp#L751
     """
 
-    CRYPTONOTE_DISPLAY_DECIMAL_POINT = 12
+#    CRYPTONOTE_DISPLAY_DECIMAL_POINT = 8
 
     s = amount
 
