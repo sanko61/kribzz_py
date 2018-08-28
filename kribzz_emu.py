@@ -98,8 +98,8 @@ def get_balance():
     return rep
 
 
-def incoming_transfers():
-    rep = post('incoming_transfers',{}, )
+def get_payments():
+    rep = post('get_payments',{}, )
     return rep
 
 
@@ -110,7 +110,7 @@ if __name__ == "__main__":
     r1 = get_balance()
     print (r1)
 
-    r2 = incoming_transfers()
+    r2 = get_payments()
     print (r2)
 
     pass

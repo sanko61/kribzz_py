@@ -221,8 +221,8 @@ def get_balance():
     return (json.dumps(response.json()))
 
 
-@app.post("/incoming_transfers")
-def incoming_transfers():
+@app.post("/get_payments")
+def get_payments():
 
     # simple wallet is running on the localhost and port of 18082
     url = WALLET_URL  # "http://localhost:18082/json_rpc"
@@ -232,7 +232,7 @@ def incoming_transfers():
 
     # simplewallet' procedure/method to call
     rpc_input = {
-        "method": "incoming_transfers",
+        "method": "get_payments",
         "params": {"transfer_type": "all"}
     }
 
