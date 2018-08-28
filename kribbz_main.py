@@ -218,7 +218,7 @@ def get_balance():
 
     # pretty print json output
     print(json.dumps(response.json(), indent=4))
-
+    return (json.dumps(response.json()))
 
 
 @app.post("/version")
