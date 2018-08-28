@@ -92,16 +92,25 @@ def transfer_coin():
 
     return rep
 
+
 def get_balance():
     rep = post('get_balance',{}, )
     return rep
 
 
+def incoming_transfers():
+    rep = post('incoming_transfers',{}, )
+    return rep
+
+
 if __name__ == "__main__":
-    r = transfer_coin()
-    print(r)
+#    r = transfer_coin()
+#    print(r)
 
     r1 = get_balance()
     print (r1)
+
+    r2 = incoming_transfers()
+    print (r2)
 
     pass
