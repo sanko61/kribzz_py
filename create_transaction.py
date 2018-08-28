@@ -35,7 +35,7 @@ def main():
     # just to make sure that amount->coversion->back
     # gives the same amount as in the initial number
     t_amount = float(get_money(str(int_amount)))
-    print(t_amount, amount)
+    print(t_amount, amount, int_amount)
     assert amount == float(get_money(str(int_amount))), "Amount conversion failed"
 
     # send specified xmr amount to the given destination_address
