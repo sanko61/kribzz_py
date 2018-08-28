@@ -104,13 +104,13 @@ def get_payments():
 
 
 if __name__ == "__main__":
-#    r = transfer_coin()
-#    print(r)
+    r = transfer_coin()
+    print(r)
 
-    r1 = get_balance()
-    print (r1)
-
-    r2 = get_payments()
-    print (r2)
+#    r1 = get_balance()
+#    print (r1)
+#
+#    r2 = get_payments()
+#    print (r2)
 
     pass
