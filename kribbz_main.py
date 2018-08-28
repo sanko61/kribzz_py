@@ -233,7 +233,7 @@ def get_payments():
     # simplewallet' procedure/method to call
     rpc_input = {
         "method": "get_payments",
-        "params": {"transfer_type": "all"}
+        "params": {"payment_id": "f8f4638f4b1d958868aa1c1884ae603f8ccf5423e3d8d7a976ae6038d6a72f71"}
     }
 
     # add standard rpc values
