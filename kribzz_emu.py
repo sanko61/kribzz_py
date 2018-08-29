@@ -13,6 +13,7 @@ import datetime
 import time
 import thread
 import os
+import binascii
 
 HOST = "http://localhost"
 PORT = "8804"
@@ -104,6 +105,13 @@ def get_payments():
 
 
 if __name__ == "__main__":
+#    random_32_bytes = os.urandom(32)
+#    tt1 = binascii.hexlify(random_32_bytes)
+#    tt2 = map(chr,tt1)
+#    payment_id = "".join(map(chr, binascii.hexlify(random_32_bytes)))
+#    payment_id = tt1
+
+
     r = transfer_coin()
     print(r)
 

@@ -33,6 +33,7 @@ import Queue
 import os
 import signal
 from check_process import *
+import binascii
 
 server = None
 
@@ -154,8 +155,8 @@ def get_payment_id():
     """
 
     random_32_bytes = os.urandom(32)
-    payment_id = "".join(map(chr, binascii.hexlify(random_32_bytes)))
-
+#    payment_id = "".join(map(chr, binascii.hexlify(random_32_bytes)))
+    payment_id = binascii.hexlify(random_32_bytes)
     return payment_id
 
 
