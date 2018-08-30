@@ -66,7 +66,7 @@ def main():
         "method": "transfer",
         "params": {"destinations": recipents,
                    "mixin": mixin,
-                   "payment_id" : payment_id,
+#                   "payment_id" : payment_id,
                    "kribbz_info": kribbz_info,
                    },
 
