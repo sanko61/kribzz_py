@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
 
-"""  Get balance
-
+"""  get_payments
 """
+
 import requests
 import json
-from kribbz_emu import get_balance
+from kribbz_emu import get_payments
 
 if __name__ == "__main__":
-    r1 = get_balance()
+    r1 = get_payments()
     print (r1)
