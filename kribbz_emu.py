@@ -86,11 +86,13 @@ def transfer_coin():
             "transactionTotal":"9975000.00",
             "sellerName":"John Clark",
             "buyerName":"Emily Stevens",
-            "wallet":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
-        }
+        },
+          "transfer": {
+              "amount":55.121,
+              "destination_address":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+              }
         },
     )
-
     return rep
 
 

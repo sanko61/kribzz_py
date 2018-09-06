@@ -236,8 +236,11 @@ def transfer_coin():
             "transactionTotal":"9975000.00",
             "sellerName":"John Clark",
             "buyerName":"Emily Stevens",
-            "wallet":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
-            }
+            },
+         "transfer": {
+             "amount":12.54321,
+             "destination_address":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+         }
         }
     Return:
        reply(JSON) {"reply":
@@ -245,15 +248,48 @@ def transfer_coin():
     }
     """
 
+#    psi_log_info(request.url)
+#    psi_log_info("POST: %s" % request.POST.dict)
+    kr_data = None
+    try:
+        kr_data = parse_request("kribbz")
+        for key,val in kr_data.items():
+            d = kr_data[key]
+            psi_log_debug( str(d) + ' = ' + str(val))
+    except Exception as errtxt:
+        psi_log_error(str(errtxt))
+        pass
+    psi_log_info(kr_data)
+
+    d_address = None
+    amnt = None
+    try:
+        kr_data = parse_request("transfer")
+        for key,val in kr_data.items():
+            d = kr_data[key]
+            psi_log_debug( str(d) + ' = ' + str(val))
+        amnt = kr_data["amount"]
+        d_address = kr_data["amount"]
+    except Exception as errtxt:
+        psi_log_error(str(errtxt))
+        pass
+    psi_log_info(d_address)
+    psi_log_info(amnt)
+
+
     # simple wallet is running on the localhost and port of 18082
     url = WALLET_URL   # "http://localhost:18082/json_rpc"
 
     # standard json header
     headers = {'content-type': 'application/json'}
 #    destination_address = "ckbzzBr9AquP7taMtmySt5PLPRAAxoC9ueGu2bqgveWf62d9X8DawW4gHBxmjLBuYDF5vspjRoQU37SgFYbHAKTS83vfWonzRKq"  #wal5
-    destination_address = "ckbzz7dYVt6T4sBWhjp8wqQUMgoE8hWyfFCcBjjdLrzEdJU9SQsXjm73rb4VzZt7RxGzuLCAs4ZtQQMJzeELHP841TbYDt4Rm9V" # wal6
+
+    destination_address = d_address
+#    destination_address = "ckbzz7dYVt6T4sBWhjp8wqQUMgoE8hWyfFCcBjjdLrzEdJU9SQsXjm73rb4VzZt7RxGzuLCAs4ZtQQMJzeELHP841TbYDt4Rm9V" # wal6
+
     # amount of xmr to send
-    amount = 12.54321
+    amount = float(amnt)
+#    amount = 12.54321
 
     # cryptonote amount format is different then
     # that normally used by people.
@@ -276,15 +312,15 @@ def transfer_coin():
 
     # get some random payment_id
     payment_id = get_payment_id()
-
-    kr1 =    {
-        "transactionId":"643427363","streeAddress":"700 Rodeo Drive","cityName":"Beverly Hills",
-        "stateCode":"CA","zipCode":"90210","latitude":"34.079678","longitude":"-118.413515",
-        "transactionDateTime":"1523855778",
-        "transactionTotal":"9975000.00",
-        "sellerName":"John Clark",
-        "buyerName":"Emily Stevens",
-        }
+    kr1 =  kr_data
+#    kr1 =    {
+#        "transactionId":"643427363","streeAddress":"700 Rodeo Drive","cityName":"Beverly Hills",
+#        "stateCode":"CA","zipCode":"90210","latitude":"34.079678","longitude":"-118.413515",
+#        "transactionDateTime":"1523855778",
+#        "transactionTotal":"9975000.00",
+#        "sellerName":"John Clark",
+#        "buyerName":"Emily Stevens",
+#        }
 
     kribbz_info =json.dumps(kr1)
     #    kribbz_info ='01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789'
