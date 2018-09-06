@@ -263,13 +263,14 @@ def transfer_coin():
 
     d_address = None
     amnt = None
+    kr_amnt = None
     try:
-        kr_data = parse_request("transfer")
+        kr_amnt = parse_request("transfer")
         for key,val in kr_data.items():
             d = kr_data[key]
             psi_log_debug( str(d) + ' = ' + str(val))
-        amnt = kr_data["amount"]
-        d_address = kr_data["destination_address"]
+        amnt = kr_amnt["amount"]
+        d_address = kr_amnt["destination_address"]
     except Exception as errtxt:
         psi_log_error(str(errtxt))
         pass
