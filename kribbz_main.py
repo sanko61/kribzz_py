@@ -253,13 +253,13 @@ def transfer_coin():
     kr_data = None
     try:
         kr_data = parse_request("kribbz")
-        for key,val in kr_data.items():
-            d = kr_data[key]
-            psi_log_debug( str(d) + ' = ' + str(val))
+#        for key,val in kr_data.items():
+#            d = kr_data[key]
+#            psi_log_debug( str(d) + ' = ' + str(val))
     except Exception as errtxt:
         psi_log_error(str(errtxt))
         pass
-    psi_log_info(kr_data)
+    print(kr_data)
 
     d_address = None
     amnt = None
@@ -269,12 +269,12 @@ def transfer_coin():
             d = kr_data[key]
             psi_log_debug( str(d) + ' = ' + str(val))
         amnt = kr_data["amount"]
-        d_address = kr_data["amount"]
+        d_address = kr_data["destination_address"]
     except Exception as errtxt:
         psi_log_error(str(errtxt))
         pass
-    psi_log_info(d_address)
-    psi_log_info(amnt)
+    print(amnt, d_address)
+#    psi_log_info(amnt)
 
 
     # simple wallet is running on the localhost and port of 18082
