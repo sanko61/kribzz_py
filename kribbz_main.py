@@ -240,7 +240,13 @@ def transfer_coin():
          "transfer": {
              "amount":12.54321,
              "destination_address":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
-         }
+         },
+         "smart_contract": {
+             "agent_signature":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+             "agent_pkey":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+             "investor_signature":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+             "investor_pkey":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+         },
         }
     Return:
        reply(JSON) {"reply":
@@ -353,8 +359,6 @@ def transfer_coin():
     return json.dumps(response.json())
 
 
-
-
 @app.post("/get_balance")
 def get_balance():
 
@@ -404,6 +408,52 @@ def get_payments():
     rpc_input = {
         "method": "get_payments",
         "params": {"payment_id": "f8f4638f4b1d958868aa1c1884ae603f8ccf5423e3d8d7a976ae6038d6a72f71"}
+    }
+
+    # add standard rpc values
+    rpc_input.update({"jsonrpc": "2.0", "id": "0"})
+
+    # execute the rpc request
+    response = requests.post(
+        url,
+        data=json.dumps(rpc_input),
+        headers=headers)
+
+    # make json dict with response
+    response_json = response.json()
+
+    # amounts in cryptonote are encoded in a way which is convenient
+    # for a computer, not a user. Thus, its better need to recode them
+    # to something user friendly, before displaying them.
+    #
+    # For examples:
+    # 4760000000000 is 4.76
+    # 80000000000   is 0.08
+    #
+    if "result" in response_json:
+        if "transfers" in response_json["result"]:
+            for transfer in response_json["result"]["transfers"]:
+                transfer["amount"] = float(get_money(str(transfer["amount"])))
+
+
+    # pretty print json output
+    print(json.dumps(response_json, indent=4))
+    return (json.dumps(response.json()))
+
+
+
+@app.post("/get_transfers")
+def get_transfers():
+
+    # simple wallet is running on the localhost and port of 18082
+    url = WALLET_URL  # "http://localhost:18082/json_rpc"
+
+    # standard json header
+    headers = {'content-type': 'application/json'}
+
+    # simplewallet' procedure/method to call
+    rpc_input = {
+        "method": "get_transfers",
     }
 
     # add standard rpc values
