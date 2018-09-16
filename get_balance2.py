@@ -10,15 +10,22 @@ import json
 def main():
 
     # simple wallet is running on the localhost and port of 18082
-    url = "http://localhost:18082/json_rpc"
+#    url = "http://localhost:18082/json_rpc"
+    url = "http://localhost:8070/json_rpc"
 
     # standard json header
     headers = {'content-type': 'application/json'}
 
     # simplewallet' procedure/method to call
     rpc_input = {
-        "method": "getbalance"
+#        "method": "getBalance"
+#        "method": "reset"
+#        "method": "createAddress",
+        "method": "deleteAddress",
+        "params": {"address": "ckbzzBEWU9rPs5Ak8peR79UGib1Krc4usjFLvEKfzRaa17EWCGCHSrqDQn1gi1ut2xf2vNJivQmkfXPTdPWEGyZi9JD6GyG1AdQ",
+        },
     }
+
 
     # add standard rpc values
     rpc_input.update({"jsonrpc": "2.0", "id": "0"})

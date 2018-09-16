@@ -18,11 +18,9 @@ ERRORS = {
 }
 
 # simple wallet is running on the localhost and port of 18082
-WALLET_URL = "http://localhost:18082/json_rpc"
+WALLET_URL = "http://localhost:8070/json_rpc"
 CRYPTONOTE_DISPLAY_DECIMAL_POINT = 8
 
-WALLET_FOLDER = "/opt/kribbz/"
-APP_FOLDER = "/home/ubuntu/kribbz_v1/build/"  # "/home/alex/devel/Blockchain/kribbz_v1/build/"
 
 from bottle import Bottle, run, request, server_names, ServerAdapter, HTTPError, route, static_file
 import requests
@@ -363,38 +361,54 @@ def transfer_coin():
     return json.dumps(response.json())
 
 
-@app.post("/get_balance")
-def get_balance():
-
-    # simple wallet is running on the localhost and port of 18082
+@app.post("/create_address")
+def create_address():
     url = WALLET_URL
-    # standard json header
     headers = {'content-type': 'application/json'}
-    # simplewallet' procedure/method to call
     rpc_input = {
-        "method": "getbalance"
+        "method": "createAddress"
     }
-    # add standard rpc values
     rpc_input.update({"jsonrpc": "2.0", "id": "0"})
-
-    # execute the rpc request
     response = requests.post(
         url,
         data=json.dumps(rpc_input),
         headers=headers)
+    print(json.dumps(response.json(), indent=4))
+    return (json.dumps(response.json()))
 
-    # amounts in cryptonote are encoded in a way which is convenient
-    # for a computer, not a user. Thus, its better need to recode them
-    # to something user friendly, before displaying them.
-    #
-    # For examples:
-    # 4760000000000 is 4.76
-    # 80000000000   is 0.08
-    #
-    # In example 3 "Basic example 3: get incoming transfers" it is
-    # shown how to convert cryptonote values to user friendly format.
 
-    # pretty print json output
+@app.post("/delete_address")
+def delete_address():
+    url = WALLET_URL
+    headers = {'content-type': 'application/json'}
+    rpc_input = {
+        "method": "deleteAddress",
+        "params": {
+            "address": "ckbzzBS4dQE8i4vQx8qzi87Bvj2AnKKkdhVoGVFv19MAfWNo7iwT3WuDQn1gi1ut2xf2vNJivQmkfXPTdPWEGyZi9JD6GxX6MkJ",
+        }
+    }
+    rpc_input.update({"jsonrpc": "2.0", "id": "0"})
+    response = requests.post(
+        url,
+        data=json.dumps(rpc_input),
+        headers=headers)
+    print(json.dumps(response.json(), indent=4))
+    return (json.dumps(response.json()))
+
+
+@app.post("/get_balance")
+def get_balance():
+    url = WALLET_URL
+    headers = {'content-type': 'application/json'}
+    rpc_input = {
+        "method": "getBalance"
+    }
+    rpc_input.update({"jsonrpc": "2.0", "id": "0"})
+
+    response = requests.post(
+        url,
+        data=json.dumps(rpc_input),
+        headers=headers)
     print(json.dumps(response.json(), indent=4))
     return (json.dumps(response.json()))
 
@@ -403,7 +417,7 @@ def get_balance():
 def get_payments():
 
     # simple wallet is running on the localhost and port of 18082
-    url = WALLET_URL  # "http://localhost:18082/json_rpc"
+    url = WALLET_URL
 
     # standard json header
     headers = {'content-type': 'application/json'}
@@ -535,65 +549,6 @@ def version():
     }
     psi_log_info(reply)
     return json.dumps(reply)
-
-
-@app.post("/create_address")
-def create_address():
-
-    sec = None
-    try:
-        sec = parse_request("wallet")
-        for key,val in sec.items():
-            d = sec[key]
-            psi_log_debug( str(d) + ' = ' + str(val))
-        pwd = sec["password"]
-        wallet = sec["wallet_name"]
-    except Exception as errtxt:
-        psi_log_error(str(errtxt))
-        pass
-    print(pwd, wallet)
-
-    run_folder= APP_FOLDER
-#    pwd = "Password12345"
-#    wallet = "wallet6"
-    code = os.system("{0}simple_wallet  --password={1} --generate-new-wallet /opt/kribbz/{2}".format(run_folder, pwd, wallet))
-    print (code)
-
-    from subprocess import Popen, PIPE
-    from tempfile import SpooledTemporaryFile as tempfile
-    f = tempfile()
-    f.write('exit\n')
-    f.seek(0)
-    #    print Popen(['/bin/grep','f'],stdout=PIPE,stdin=f).stdout.read()
-
-    cmd1 = "{0}simple_wallet".format(run_folder)
-    cmd2 = "--password={0}".format(pwd, wallet)
-    cmd3 = "--generate-new-wallet"
-    cmd4 = "{0}{1}".format(WALLET_FOLDER, wallet)
-
-    out =  Popen([cmd1,cmd2,cmd3,cmd4],stdout=PIPE,stdin=f).stdout.read()
-
-    print (out)
-
-    f.close()
-
-    import os.path
-    fname = "{0}{1}.address".format(WALLET_FOLDER ,wallet)
-
-#    if os.path.isfile(fname):
-#        address = None
-
-    try:
-        with open(fname) as f:
-            address = f.readline()
-        # you may also want to remove whitespace characters like `\n` at the end of each line
-        address = address.strip()
-    except :
-        address = None
-
-    rez = {"address": address, "msg": out}
-    return (json.dumps(rez))
-
 
 
 @app.route('/hello/:name')

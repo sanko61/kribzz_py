@@ -96,6 +96,8 @@ def transfer_coin():
               "agent_pkey":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
               "investor_signature":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
               "investor_pkey":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+              "owner_signature":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+              "owner_pkey":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
               },
 
         },
@@ -118,6 +120,24 @@ def get_payments():
     return rep
 
 
+def create_address():
+    rep = post('create_address',
+        {"wallet":
+             {
+                "password":"Passworsd12345",
+                "wallet_name":"wallet7",
+             }
+        },
+    )
+
+    return rep
+
+
+def delete_address():
+    rep = post('delete_address',{}, )
+    return rep
+
+
 if __name__ == "__main__":
 #    random_32_bytes = os.urandom(32)
 #    tt1 = binascii.hexlify(random_32_bytes)
@@ -126,13 +146,19 @@ if __name__ == "__main__":
 #    payment_id = tt1
 
 
-    r = transfer_coin()
-    print(r)
+#    r = transfer_coin()
+#    print(r)
 
 #    r1 = get_balance()
 #    print (r1)
 #
 #    r2 = get_payments()
 #    print (r2)
+
+#    r = delete_address()
+#    print(r)
+
+    r= create_address()
+    print (r)
 
     pass
