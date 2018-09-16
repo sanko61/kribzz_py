@@ -5,6 +5,7 @@
 """
 
 import json
+import os
 
 
 DBTIME_FMT = "%Y-%m-%d %H:%M:%S"
@@ -556,8 +557,9 @@ def create_address():
     run_folder= APP_FOLDER
 #    pwd = "Password12345"
 #    wallet = "wallet6"
-    code = os.system("{0}simple_wallet  --password={1} --generate-new-wallet /opt/kribbz/{2}".format(run_folder, pwd, wallet))
-    print (code)
+
+#    code = os.system("{0}simple_wallet  --password={1} --generate-new-wallet /opt/kribbz/{2}".format(run_folder, pwd, wallet))
+#    print (code)
 
     from subprocess import Popen, PIPE
     from tempfile import SpooledTemporaryFile as tempfile
