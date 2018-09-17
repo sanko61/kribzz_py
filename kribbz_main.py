@@ -227,6 +227,32 @@ def error():
     raise HTTPError(403, 2)
 
 
+def run_wallet(wallet = "wallet6", pwd = "Password12345"):
+    run_folder="/home/alex/devel/Blockchain/kribbz_v1/build/"  # "./"
+#    pwd = "Password12345"
+#    wallet = "wallet6"
+
+    from subprocess import Popen, PIPE
+    from tempfile import SpooledTemporaryFile as tempfile
+    f = tempfile()
+    f.write('exit\n')
+    f.seek(0)
+    #    print Popen(['/bin/grep','f'],stdout=PIPE,stdin=f).stdout.read()
+    #./simple_wallet  --wallet-file ./wal2 --password Vatson2008  --rpc-bind-port 18082
+
+    cmd1 = "{0}simple_wallet".format(run_folder)
+    cmd2 = "--wallet-file {0}".format(wallet)
+    cmd3 = "--password={0}".format(pwd)
+    cmd4 = "--rpc-bind-port 18082"
+
+    prx =  Popen([cmd1,cmd2,cmd3,cmd4],stdout=PIPE,stdin=f)
+
+    out =  prx.stdout.read()
+    #    out =  Popen([cmd1,cmd2,cmd3,cmd4],stdout=PIPE,stdin=f).stdout.read()
+    print (out)
+    f.close()
+
+
 @app.post("/transfer_coin")
 def transfer_coin():
     """
@@ -275,6 +301,9 @@ def transfer_coin():
     d_address = None
     amnt = None
     kr_amnt = None
+    wallet = None
+    pwd =  None
+
     try:
         kr_amnt = parse_request("transfer")
         for key,val in kr_data.items():
@@ -282,12 +311,30 @@ def transfer_coin():
             psi_log_debug( str(d) + ' = ' + str(val))
         amnt = kr_amnt["amount"]
         d_address = kr_amnt["destination_address"]
+        wallet = kr_amnt["wallet"]
+        pwd = kr_amnt["password"]
     except Exception as errtxt:
         psi_log_error(str(errtxt))
         pass
     print(amnt, d_address)
 #    psi_log_info(amnt)
 
+#    run_wallet(wallet, pwd)
+    from subprocess import Popen, PIPE
+    from tempfile import SpooledTemporaryFile as tempfile
+    f = tempfile()
+    f.write('exit\n')
+    f.seek(0)
+
+    # Start wallet
+    #    print Popen(['/bin/grep','f'],stdout=PIPE,stdin=f).stdout.read()
+    #./simple_wallet  --wallet-file ./wal2 --password Vatson2008  --rpc-bind-port 18082
+    run_folder= APP_FOLDER
+    cmd1 = "{0}simple_wallet".format(run_folder)
+    cmd2 = "--wallet-file {0}".format(wallet)
+    cmd3 = "--password={0}".format(pwd)
+    cmd4 = "--rpc-bind-port 18082"
+    prx =  Popen([cmd1,cmd2,cmd3,cmd4],stdout=PIPE,stdin=f)
 
     # simple wallet is running on the localhost and port of 18082
     url = WALLET_URL   # "http://localhost:18082/json_rpc"
@@ -358,6 +405,13 @@ def transfer_coin():
 
     # print the payment_id
     print("#payment_id: ", payment_id)
+
+    # Stop wallet
+    out =  prx.stdout.read()
+    #    out =  Popen([cmd1,cmd2,cmd3,cmd4],stdout=PIPE,stdin=f).stdout.read()
+    print (out)
+    f.close()
+
 
     # pretty print json output
     print(json.dumps(response.json(), indent=4))
