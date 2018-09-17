@@ -442,12 +442,21 @@ def transfer_coin():
     print("#payment_id: ", payment_id)
 
     # Stop wallet
-    out =  prx.stdout.read()
+#    out =  prx.stdout.read()
     #    out =  Popen([cmd1,cmd2,cmd3,cmd4],stdout=PIPE,stdin=f).stdout.read()
-    print (out)
+#    print (out)
     f.close()
 
 
+    rpc_input = {
+        "method": "stop_wallet",
+        }
+    rpc_input.update({"jsonrpc": "2.0", "id": "0"})
+    response = requests.post(
+        url,
+        data=json.dumps(rpc_input),
+        headers=headers)
+    
     # pretty print json output
     print(json.dumps(response.json(), indent=4))
     return json.dumps(response.json())
