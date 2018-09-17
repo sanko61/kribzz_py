@@ -344,8 +344,8 @@ def transfer_coin():
     run_folder= APP_FOLDER
     cmd1 = "{0}simple_wallet".format(run_folder)
     cmd2 = "--wallet-file={0}".format(wallet)
-    cmd3 = "--password {0}".format(pwd)
-    cmd4 = "--rpc-bind-port 18082"
+    cmd3 = "--password={0}".format(pwd)
+    cmd4 = "--rpc-bind-port=18082"
     prx =  Popen([cmd1,cmd2,cmd3,cmd4],stdout=PIPE,stdin=f)
 
     # simple wallet is running on the localhost and port of 18082
