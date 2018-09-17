@@ -341,12 +341,16 @@ def transfer_coin():
     # Start wallet
     #    print Popen(['/bin/grep','f'],stdout=PIPE,stdin=f).stdout.read()
     #./simple_wallet  --wallet-file ./wal2 --password Vatson2008  --rpc-bind-port 18082
+    # ./simple_wallet --wallet-file /opt/kribbz/kribbz_wallet  --password Password12345 --rpc-bind-port 18082
     run_folder= APP_FOLDER
     cmd1 = "{0}simple_wallet".format(run_folder)
-    cmd2 = "--wallet-file={0}".format(wallet)
-    cmd3 = "--password={0}".format(pwd)
-    cmd4 = "--rpc-bind-port=18082"
-    prx =  Popen([cmd1,cmd2,cmd3,cmd4],stdout=PIPE,stdin=f)
+    cmd2 = "--wallet-file"
+    cmd3 = "{0}".format(wallet)
+    cmd4 = "--password"
+    cmd5 = "{0}".format(pwd)
+    cmd6 = "--rpc-bind-port"
+    cmd7 = "18082"
+    prx =  Popen([cmd1,cmd2,cmd3,cmd4,cmd5,cmd6,cmd7],stdout=PIPE,stdin=f)
 
     # simple wallet is running on the localhost and port of 18082
     url = WALLET_URL   # "http://localhost:18082/json_rpc"
