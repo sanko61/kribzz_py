@@ -308,7 +308,7 @@ def transfer_coin():
         kr_amnt = parse_request("transfer")
         for key,val in kr_data.items():
             d = kr_data[key]
-            psi_log_debug( str(d) + ' = ' + str(val))
+#            psi_log_debug( str(d) + ' = ' + str(val))
         amnt = kr_amnt["amount"]
         d_address = kr_amnt["destination_address"]
     except Exception as errtxt:
@@ -322,7 +322,7 @@ def transfer_coin():
         sec = parse_request("wallet")
         for key,val in sec.items():
             d = sec[key]
-            psi_log_debug( str(d) + ' = ' + str(val))
+#            psi_log_debug( str(d) + ' = ' + str(val))
         pwd = sec["password"]
         wallet = sec["wallet_name"]
     except Exception as errtxt:
@@ -346,7 +346,7 @@ def transfer_coin():
     cmd2 = "--wallet-file={0}".format(wallet)
     cmd3 = "--password={0}".format(pwd)
     cmd4 = "--rpc-bind-port=18082"
-#    prx =  Popen([cmd1,cmd2,cmd3,cmd4],stdout=PIPE,stdin=f)
+    prx =  Popen([cmd1,cmd2,cmd3,cmd4],stdout=PIPE,stdin=f)
 
     # simple wallet is running on the localhost and port of 18082
     url = WALLET_URL   # "http://localhost:18082/json_rpc"
@@ -419,7 +419,7 @@ def transfer_coin():
     print("#payment_id: ", payment_id)
 
     # Stop wallet
-    out =  "OK" #prx.stdout.read()
+    out =  prx.stdout.read()
     #    out =  Popen([cmd1,cmd2,cmd3,cmd4],stdout=PIPE,stdin=f).stdout.read()
     print (out)
     f.close()
