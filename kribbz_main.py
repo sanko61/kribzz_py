@@ -350,7 +350,7 @@ def transfer_coin():
     cmd5 = "{0}".format(pwd)
     cmd6 = "--rpc-bind-port"
     cmd7 = "18082"
-#    out =  Popen([cmd1,cmd2,cmd3,cmd4,cmd5,cmd6,cmd7],stdout=PIPE,stdin=f).stdout.read()
+#    proc =  Popen([cmd1,cmd2,cmd3,cmd4,cmd5,cmd6,cmd7],stdout=PIPE,stdin=f).stdout.read()
 #    out =  prx.stdout.read()
 #    print(out)
 
@@ -359,12 +359,15 @@ def transfer_coin():
     from subprocess import *
     cmd = "{0}simple_wallet --wallet-file {1}{2}  --password={3} --rpc-bind-port 18082".format(run_folder, WALLET_FOLDER, wallet, pwd)
     proc = Popen(cmd, shell=True, stdout=PIPE)
+    cnt = 0
     while True:
+        cnt += 1
+        if cnt > 40:
+            break
         data = proc.stdout.readline()   # Alternatively proc.stdout.read(1024)
         if len(data) == 0:
             break
         sys.stdout.write(data)   # sys.stdout.buffer.write(data) on Python 3.x
-
 
 
 
