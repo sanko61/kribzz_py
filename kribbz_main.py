@@ -345,7 +345,7 @@ def transfer_coin():
     run_folder= APP_FOLDER
     cmd1 = "{0}simple_wallet".format(run_folder)
     cmd2 = "--wallet-file"
-    cmd3 = "{0}".format(wallet)
+    cmd3 = "{0}{1}".format(WALLET_FOLDER, wallet)
     cmd4 = "--password"
     cmd5 = "{0}".format(pwd)
     cmd6 = "--rpc-bind-port"
@@ -357,7 +357,7 @@ def transfer_coin():
 
     import sys
     from subprocess import *
-    cmd = "{0}simple_wallet --wallet-file {1}  --password={2} --rpc-bind-port 18082".format(run_folder, wallet, pwd)
+    cmd = "{0}simple_wallet --wallet-file {1}{2}  --password={3} --rpc-bind-port 18082".format(run_folder, WALLET_FOLDER, wallet, pwd)
     proc = Popen(cmd, shell=True, stdout=PIPE)
     while True:
         data = proc.stdout.readline()   # Alternatively proc.stdout.read(1024)
