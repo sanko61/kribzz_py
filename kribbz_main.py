@@ -253,6 +253,35 @@ def run_wallet(wallet = "wallet6", pwd = "Password12345"):
     f.close()
 
 
+def start_wallet(run_folder, wallet, pwd):
+    import sys
+    from subprocess import *
+    cmd = "{0}simple_wallet --wallet-file {1}{2}  --password={3} --rpc-bind-port 18082".format(run_folder, WALLET_FOLDER, wallet, pwd)
+    proc = Popen(cmd, shell=True, stdout=PIPE)
+    cnt = 0
+    while True:
+        cnt += 1
+        if cnt > 40:
+            break
+        data = proc.stdout.readline()   # Alternatively proc.stdout.read(1024)
+        if len(data) == 0:
+            break
+        sys.stdout.write(data)   # sys.stdout.buffer.write(data) on Python 3.x
+
+
+def stop_wallet():
+    rpc_input = {
+        "method": "stop_wallet",
+        }
+    headers = {'content-type': 'application/json'}
+    rpc_input.update({"jsonrpc": "2.0", "id": "0"})
+    response = requests.post(
+        WALLET_URL,
+        data=json.dumps(rpc_input),
+        headers=headers)
+
+
+
 @app.post("/transfer_coin")
 def transfer_coin():
     """
@@ -355,21 +384,22 @@ def transfer_coin():
 #    print(out)
 
 
-    import sys
-    from subprocess import *
-    cmd = "{0}simple_wallet --wallet-file {1}{2}  --password={3} --rpc-bind-port 18082".format(run_folder, WALLET_FOLDER, wallet, pwd)
-    proc = Popen(cmd, shell=True, stdout=PIPE)
-    cnt = 0
-    while True:
-        cnt += 1
-        if cnt > 40:
-            break
-        data = proc.stdout.readline()   # Alternatively proc.stdout.read(1024)
-        if len(data) == 0:
-            break
-        sys.stdout.write(data)   # sys.stdout.buffer.write(data) on Python 3.x
+#    import sys
+#    from subprocess import *
+#    cmd = "{0}simple_wallet --wallet-file {1}{2}  --password={3} --rpc-bind-port 18082".format(run_folder, WALLET_FOLDER, wallet, pwd)
+#    proc = Popen(cmd, shell=True, stdout=PIPE)
+#    cnt = 0
+#    while True:
+#        cnt += 1
+#        if cnt > 40:
+#            break
+#        data = proc.stdout.readline()   # Alternatively proc.stdout.read(1024)
+#        if len(data) == 0:
+#            break
+#        sys.stdout.write(data)   # sys.stdout.buffer.write(data) on Python 3.x
 
 
+    start_wallet(run_folder, wallet, pwd)
 
     # simple wallet is running on the localhost and port of 18082
     url = WALLET_URL   # "http://localhost:18082/json_rpc"
@@ -447,17 +477,16 @@ def transfer_coin():
 #    print (out)
     f.close()
 
+#    rpc_input = {
+#        "method": "stop_wallet",
+#        }
+#    rpc_input.update({"jsonrpc": "2.0", "id": "0"})
+#    response = requests.post(
+#        url,
+#        data=json.dumps(rpc_input),
+#        headers=headers)
 
-    rpc_input = {
-        "method": "stop_wallet",
-        }
-    rpc_input.update({"jsonrpc": "2.0", "id": "0"})
-    response = requests.post(
-        url,
-        data=json.dumps(rpc_input),
-        headers=headers)
-
-    # pretty print json output
+    stop_wallet()
     print(rez)
     return (rez)
 
