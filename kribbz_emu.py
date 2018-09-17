@@ -101,7 +101,7 @@ def transfer_coin():
               },
           "wallet":
               {
-                  "password":"Passworsd12345",
+                  "password":"Password12345",
                   "wallet_name":"wallet7",
                   },
         },
