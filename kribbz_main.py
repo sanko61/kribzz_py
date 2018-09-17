@@ -351,7 +351,8 @@ def transfer_coin():
     cmd6 = "--rpc-bind-port"
     cmd7 = "18082"
     prx =  Popen([cmd1,cmd2,cmd3,cmd4,cmd5,cmd6,cmd7],stdout=PIPE,stdin=f)
-
+    out =  prx.stdout.read()
+    print(out)
     # simple wallet is running on the localhost and port of 18082
     url = WALLET_URL   # "http://localhost:18082/json_rpc"
 
