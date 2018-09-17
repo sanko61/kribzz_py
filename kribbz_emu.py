@@ -99,7 +99,11 @@ def transfer_coin():
               "owner_signature":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
               "owner_pkey":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
               },
-
+          "wallet":
+              {
+                  "password":"Passworsd12345",
+                  "wallet_name":"wallet7",
+                  },
         },
     )
     return rep

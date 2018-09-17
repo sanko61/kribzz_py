@@ -311,13 +311,25 @@ def transfer_coin():
             psi_log_debug( str(d) + ' = ' + str(val))
         amnt = kr_amnt["amount"]
         d_address = kr_amnt["destination_address"]
-        wallet = kr_amnt["wallet"]
-        pwd = kr_amnt["password"]
     except Exception as errtxt:
         psi_log_error(str(errtxt))
         pass
     print(amnt, d_address)
 #    psi_log_info(amnt)
+
+    sec = None
+    try:
+        sec = parse_request("wallet")
+        for key,val in sec.items():
+            d = sec[key]
+            psi_log_debug( str(d) + ' = ' + str(val))
+        pwd = sec["password"]
+        wallet = sec["wallet_name"]
+    except Exception as errtxt:
+        psi_log_error(str(errtxt))
+        pass
+    print(pwd, wallet)
+
 
 #    run_wallet(wallet, pwd)
     from subprocess import Popen, PIPE
