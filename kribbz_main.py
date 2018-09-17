@@ -437,7 +437,7 @@ def transfer_coin():
         url,
         data=json.dumps(rpc_input),
         headers=headers)
-
+    rez = json.dumps(response.json())
     # print the payment_id
     print("#payment_id: ", payment_id)
 
@@ -456,10 +456,10 @@ def transfer_coin():
         url,
         data=json.dumps(rpc_input),
         headers=headers)
-    
+
     # pretty print json output
-    print(json.dumps(response.json(), indent=4))
-    return json.dumps(response.json())
+    print(rez)
+    return (rez)
 
 
 @app.post("/get_balance")
