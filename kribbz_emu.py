@@ -128,7 +128,7 @@ def create_address():
     rep = post('create_address',
         {"wallet":
              {
-                "password":"Passworsd12345",
+                "password":"Password12345",
                 "wallet_name":"wallet7",
              }
         },
