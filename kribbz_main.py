@@ -350,9 +350,24 @@ def transfer_coin():
     cmd5 = "{0}".format(pwd)
     cmd6 = "--rpc-bind-port"
     cmd7 = "18082"
-    prx =  Popen([cmd1,cmd2,cmd3,cmd4,cmd5,cmd6,cmd7],stdout=PIPE,stdin=f)
-    out =  prx.stdout.read()
-    print(out)
+#    out =  Popen([cmd1,cmd2,cmd3,cmd4,cmd5,cmd6,cmd7],stdout=PIPE,stdin=f).stdout.read()
+#    out =  prx.stdout.read()
+#    print(out)
+
+
+    import sys
+    from subprocess import *
+    cmd = "{0}simple_wallet --wallet-file {1}  --password={2} --rpc-bind-port 18082".format(run_folder, wallet, pwd)
+    proc = Popen(cmd, shell=True, stdout=PIPE)
+    while True:
+        data = proc.stdout.readline()   # Alternatively proc.stdout.read(1024)
+        if len(data) == 0:
+            break
+        sys.stdout.write(data)   # sys.stdout.buffer.write(data) on Python 3.x
+
+
+
+
     # simple wallet is running on the localhost and port of 18082
     url = WALLET_URL   # "http://localhost:18082/json_rpc"
 
