@@ -124,7 +124,7 @@ def get_balance():
 def get_transfers():
     rep = post('get_transfers',
         {"wallet":
-             {"password":"Password12345","wallet_name":"wallet7",}},
+             {"password":"Password12345","wallet_name":"kribbz_wallet",}},
     )
     return rep
 
