@@ -589,6 +589,19 @@ def get_payments():
 
 @app.post("/get_transfers")
 def get_transfers():
+    sec = None
+    try:
+        sec = parse_request("wallet")
+        for key,val in sec.items():
+            d = sec[key]
+            #            psi_log_debug( str(d) + ' = ' + str(val))
+        pwd = sec["password"]
+        wallet = sec["wallet_name"]
+    except Exception as errtxt:
+        psi_log_error(str(errtxt))
+        pass
+    print(pwd, wallet)
+    start_wallet(APP_FOLDER, wallet, pwd)
 
     # simple wallet is running on the localhost and port of 18082
     url = WALLET_URL  # "http://localhost:18082/json_rpc"
@@ -627,9 +640,10 @@ def get_transfers():
                 transfer["amount"] = float(get_money(str(transfer["amount"])))
 
 
-    # pretty print json output
-    print(json.dumps(response_json, indent=4))
-    return (json.dumps(response.json()))
+    rez = json.dumps(response.json())
+    print(json.dumps(response.json(), indent=4))
+    stop_wallet()
+    return (rez)
 
 
 def get_money(amount):
