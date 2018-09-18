@@ -281,7 +281,6 @@ def stop_wallet():
         headers=headers)
 
 
-
 @app.post("/transfer_coin")
 def transfer_coin():
     """
@@ -493,6 +492,7 @@ def transfer_coin():
 @app.post("/get_balance")
 def get_balance():
 
+    start_wallet()
     # simple wallet is running on the localhost and port of 18082
     url = WALLET_URL
     # standard json header
@@ -522,8 +522,10 @@ def get_balance():
     # shown how to convert cryptonote values to user friendly format.
 
     # pretty print json output
+    rez = json.dumps(response.json())
     print(json.dumps(response.json(), indent=4))
-    return (json.dumps(response.json()))
+    stop_wallet()
+    return (rez)
 
 
 @app.post("/get_payments")
