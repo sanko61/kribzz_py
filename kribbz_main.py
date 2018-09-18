@@ -344,7 +344,6 @@ def transfer_coin():
         psi_log_error(str(errtxt))
         pass
     print(amnt, d_address)
-#    psi_log_info(amnt)
 
     sec = None
     try:
