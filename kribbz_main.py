@@ -491,8 +491,20 @@ def transfer_coin():
 
 @app.post("/get_balance")
 def get_balance():
+    sec = None
+    try:
+        sec = parse_request("wallet")
+        for key,val in sec.items():
+            d = sec[key]
+        #            psi_log_debug( str(d) + ' = ' + str(val))
+        pwd = sec["password"]
+        wallet = sec["wallet_name"]
+    except Exception as errtxt:
+        psi_log_error(str(errtxt))
+        pass
+    print(pwd, wallet)
+    start_wallet(APP_FOLDER, wallet, pwd)
 
-    start_wallet()
     # simple wallet is running on the localhost and port of 18082
     url = WALLET_URL
     # standard json header

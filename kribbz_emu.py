@@ -110,7 +110,14 @@ def transfer_coin():
 
 
 def get_balance():
-    rep = post('get_balance',{}, )
+    rep = post('get_balance',
+        {"wallet":
+             {
+                 "password":"Password12345",
+                 "wallet_name":"wallet7",
+                 }
+        },
+    )
     return rep
 
 
