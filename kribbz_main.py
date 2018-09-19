@@ -749,9 +749,13 @@ def create_address():
         address = None
     if address is not None:
         out = 'Wallet existed or created successfully'
+        success = True
+        error = "0"
     else:
-        out = debug
-    rez = {"address": address, "msg": out}
+        error = debug
+        success = False
+
+    rez = {"address": address, "msg": out, "error":error, "success":success}
     return (json.dumps(rez, indent=4))
 
 
