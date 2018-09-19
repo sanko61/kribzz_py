@@ -137,6 +137,8 @@ def get_payments():
 
 
 def create_address():
+#     curl  -H "Content-Type: application/json" --request POST -d '{"wallet":{ "password":"Password12345","wallet_name":"wallet7"}}' "http://52.13.195.226:8804/create_address"
+
     rep = post('create_address',
         {"wallet":
              {
