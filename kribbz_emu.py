@@ -15,7 +15,9 @@ import thread
 import os
 import binascii
 
-HOST = "http://localhost"
+#HOST = "http://localhost"
+HOST = "http://ec2-52-13-195-226.us-west-2.compute.amazonaws.com"
+
 PORT = "8804"
 
 
