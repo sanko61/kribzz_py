@@ -727,9 +727,9 @@ def create_address():
     cmd3 = "--generate-new-wallet"
     cmd4 = "{0}{1}".format(WALLET_FOLDER, wallet)
 
-    out =  Popen([cmd1,cmd2,cmd3,cmd4],stdout=PIPE,stdin=f).stdout.read()
+    debug =  Popen([cmd1,cmd2,cmd3,cmd4],stdout=PIPE,stdin=f).stdout.read()
 
-    print (out)
+    print (debug)
 
     f.close()
 
@@ -739,6 +739,7 @@ def create_address():
 #    if os.path.isfile(fname):
 #        address = None
 
+
     try:
         with open(fname) as f:
             address = f.readline()
@@ -746,9 +747,12 @@ def create_address():
         address = address.strip()
     except :
         address = None
-
+    if address is not None:
+        out = 'Wallet existed or created successfully'
+    else:
+        out = debug
     rez = {"address": address, "msg": out}
-    return (json.dumps(rez))
+    return (json.dumps(rez, indent=4))
 
 
 
