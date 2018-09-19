@@ -313,8 +313,8 @@ def transfer_coin():
     }
     """
 
-#    psi_log_info(request.url)
-#    psi_log_info("POST: %s" % request.POST.dict)
+    psi_log_info(request.url)
+    psi_log_info("POST: %s" % request.POST.dict)
     kr_data = None
     try:
         kr_data = parse_request("kribbz")
