@@ -26,3 +26,24 @@ curl -X POST \
 -H "Content-Type: application/json" \
 -d @transfer.json \
 -X POST http://54.70.55.32:8804/transfer_coin
+
+
+[program:kribbz_server]
+command=python  /home/ubuntu/kribbz_v1/py_server/kribbz_main.py
+directory=/home/ubuntu/kribbz_v1/py_server/
+user=ubuntu
+autostart=true
+autorestart=true
+stdout_logfile=/var/log/kribbz/kribbz_server.log
+stderr_logfile=/var/log/kribbz/kribbz_err.log
+stopsignal=INT
+
+[program:kribbzd]
+command=/home/ubuntu/kribbz_v1/build/run_kribbz.sh
+directory=/home/ubuntu/kribbz_v1/build/
+user=ubuntu
+autostart=true
+autorestart=true
+stdout_logfile=/var/log/kribbz/kribbzd.log
+stderr_logfile=/var/log/kribbz/kribbzd_err.log
+stopsignal=INT
