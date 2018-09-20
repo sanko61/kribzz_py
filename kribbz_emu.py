@@ -104,7 +104,7 @@ def transfer_coin():
               },
           "wallet":
               {
-                  "password":"Password12345kk",
+                  "password":"Password12345",
                   "wallet_name":"kribbz_wallet",
                   },
         },
