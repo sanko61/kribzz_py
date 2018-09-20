@@ -16,8 +16,8 @@ import os
 import binascii
 
 #HOST = "http://localhost"
-#HOST = "http://ec2-52-13-195-226.us-west-2.compute.amazonaws.com"
-HOST = "http://52.13.195.226"
+HOST = "http://ec2-52-13-195-226.us-west-2.compute.amazonaws.com"
+#HOST = "http://52.13.195.226"
 PORT = "8804"
 
 
@@ -90,8 +90,9 @@ def transfer_coin():
             "buyerName":"Emily Stevens",
         },
           "transfer": {
-              "amount":0.1234,
-              "destination_address":"ckbzz7dYVt6T4sBWhjp8wqQUMgoE8hWyfFCcBjjdLrzEdJU9SQsXjm73rb4VzZt7RxGzuLCAs4ZtQQMJzeELHP841TbYDt4Rm9V",
+              "amount":0.2055,
+#              "destination_address":"ckbzz7dYVt6T4sBWhjp8wqQUMgoE8hWyfFCcBjjdLrzEdJU9SQsXjm73rb4VzZt7RxGzuLCAs4ZtQQMJzeELHP841TbYDt4Rm9V",
+              "destination_address":"ckbzzAkpo6cY3hRGrVhyYFNaH9uowjUDhVwN2APDo8TRjWsBewnM39i5MXxJmnDAJkbYFVA6rxMAuTSACbZbAMwT5FzK3sQnLro",  # wallet7
               },
           "smart_contract": {
               "agent_signature":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
@@ -116,7 +117,7 @@ def get_balance():
         {"wallet":
              {
                  "password":"Password12345",
-                 "wallet_name":"wallet7",
+                 "wallet_name":"wal6",
                  }
         },
     )

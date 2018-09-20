@@ -485,9 +485,26 @@ def transfer_coin():
 #        headers=headers)
 
     stop_wallet()
-    print(rez)
-    return (rez)
 
+#    {u'jsonrpc': u'2.0', u'id': u'0', u'result': {u'tx_hash': u'00000000000000001701000000000000320e5717afca5e5e0000000000000000'}}
+
+    try:
+        tx_hash = rez[u'result'][u'tx_hash']
+    except :
+        tx_hash = None
+    if tx_hash is not None:
+        out = 'coin transfer successful'
+        success = True
+        error = "0"
+    else:
+        out = 'coin transfer not successful'
+        error = rez
+        success = False
+
+    rez2 = {"tx_hash": tx_hash, "msg": out, "error":error, "success":success}
+
+    print(rez2)
+    return (json.dumps(rez2, indent=4))
 
 @app.post("/get_balance")
 def get_balance():
