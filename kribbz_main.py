@@ -465,8 +465,9 @@ def transfer_coin():
         url,
         data=json.dumps(rpc_input),
         headers=headers)
-    rez = json.dumps(response.json())
-    # print the payment_id
+#    rez = json.dumps(response.json())
+    rez = response.json()
+
     print("#payment_id: ", payment_id)
 
     # Stop wallet
@@ -487,7 +488,6 @@ def transfer_coin():
     stop_wallet()
 
 #    {u'jsonrpc': u'2.0', u'id': u'0', u'result': {u'tx_hash': u'00000000000000001701000000000000320e5717afca5e5e0000000000000000'}}
-
     try:
         tx_hash = rez[u'result'][u'tx_hash']
     except :
