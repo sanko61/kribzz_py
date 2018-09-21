@@ -283,10 +283,8 @@ def start_wallet(run_folder, wallet, pwd, s_stop=None):
 
 #    run_wallet(s_stop, cmd)
     print(cmd)
-    prx2 = Process(target=proxy_f1, args=(cmd))
-    prx2.start()
+    run_wallet(s_stop,  cmd)
     print('Wallet loaded OK')
-    return prx2
 #Wallet initialize failed: can't load wallet file '/opt/kribbz/kribbz_wallet.wallet', check password
 
 
@@ -420,7 +418,7 @@ def transfer_coin():
 
     s_stop = Value('d', 0.0)
 
-    px2 = start_wallet(run_folder, wallet, pwd, s_stop)
+    start_wallet(run_folder, wallet, pwd, s_stop)
 
     # simple wallet is running on the localhost and port of 18082
     url = WALLET_URL   # "http://localhost:18082/json_rpc"
@@ -516,8 +514,6 @@ def transfer_coin():
 
     rez2 = {"tx_hash": tx_hash, "msg": out, "error":error, "success":success}
 
-    if px2:
-        px2.join()
     print(rez2)
     return (json.dumps(rez2, indent=4))
 
