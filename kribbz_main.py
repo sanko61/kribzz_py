@@ -261,12 +261,13 @@ def start_wallet(run_folder, wallet, pwd):
     cnt = 0
     while True:
         cnt += 1
-        if cnt > 40:
-            break
+#        if cnt > 40:
+#            break
         data = proc.stdout.readline()   # Alternatively proc.stdout.read(1024)
         if len(data) == 0:
             break
         sys.stdout.write(data)   # sys.stdout.buffer.write(data) on Python 3.x
+    print('Wallet loaded OK')
 #Wallet initialize failed: can't load wallet file '/opt/kribbz/kribbz_wallet.wallet', check password
 
 
