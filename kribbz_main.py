@@ -6,7 +6,7 @@
 
 import json
 import os
-
+from multiprocessing import Process, Value, Array
 
 DBTIME_FMT = "%Y-%m-%d %H:%M:%S"
 
@@ -163,6 +163,19 @@ def get_payment_id():
     return payment_id
 
 
+def proxy_f1(cmd3):
+    os.system(cmd3)
+
+
+def run_wallet(s_stop,  cmd3 = 'killall tcproxy>/dev/null 2>&1'):
+    prx2 = Process(target=proxy_f1, args=(cmd3))
+    prx2.start()
+    while(1):
+        if (int(s_stop.value) == 1):
+            print 'break:'
+            break
+        time.sleep(0.5)
+
 
 
 class MySSLCherryPy(ServerAdapter):
@@ -227,7 +240,7 @@ def error():
     raise HTTPError(403, 2)
 
 
-def run_wallet(wallet = "wallet6", pwd = "Password12345"):
+def run_wallet2(wallet = "wallet6", pwd = "Password12345"):
     run_folder="/home/alex/devel/Blockchain/kribbz_v1/build/"  # "./"
 #    pwd = "Password12345"
 #    wallet = "wallet6"
@@ -253,22 +266,28 @@ def run_wallet(wallet = "wallet6", pwd = "Password12345"):
     f.close()
 
 
-def start_wallet(run_folder, wallet, pwd):
+def start_wallet(run_folder, wallet, pwd, s_stop=None):
     import sys
     from subprocess import *
     cmd = "{0}simple_wallet --wallet-file {1}{2}  --password={3} --rpc-bind-port 18082".format(run_folder, WALLET_FOLDER, wallet, pwd)
-    proc = Popen(cmd, shell=True, stdout=PIPE)
-    cnt = 0
-    while True:
-        cnt += 1
-#        if cnt > 40:
+#    proc = Popen(cmd, shell=True, stdout=PIPE)
+#    cnt = 0
+#    while True:
+#        cnt += 1
+##        if cnt > 40:
+##            break
+#        data = proc.stdout.readline()   # Alternatively proc.stdout.read(1024)
+#        if len(data) == 0:
 #            break
-        data = proc.stdout.readline()   # Alternatively proc.stdout.read(1024)
-        if len(data) == 0:
-            break
-        sys.stdout.write(data)   # sys.stdout.buffer.write(data) on Python 3.x
+#        sys.stdout.write(data)   # sys.stdout.buffer.write(data) on Python 3.x
+
+#    run_wallet(s_stop, cmd)
+    prx2 = Process(target=proxy_f1, args=(cmd))
+    prx2.start()
     print('Wallet loaded OK')
+    return prx2
 #Wallet initialize failed: can't load wallet file '/opt/kribbz/kribbz_wallet.wallet', check password
+
 
 
 def stop_wallet():
@@ -398,8 +417,9 @@ def transfer_coin():
 #            break
 #        sys.stdout.write(data)   # sys.stdout.buffer.write(data) on Python 3.x
 
+    s_stop = Value('d', 0.0)
 
-    start_wallet(run_folder, wallet, pwd)
+    px2 = start_wallet(run_folder, wallet, pwd, s_stop)
 
     # simple wallet is running on the localhost and port of 18082
     url = WALLET_URL   # "http://localhost:18082/json_rpc"
@@ -495,6 +515,8 @@ def transfer_coin():
 
     rez2 = {"tx_hash": tx_hash, "msg": out, "error":error, "success":success}
 
+    if px2:
+        px2.join()
     print(rez2)
     return (json.dumps(rez2, indent=4))
 
