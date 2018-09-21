@@ -269,7 +269,7 @@ def run_wallet2(wallet = "wallet6", pwd = "Password12345"):
 def start_wallet(run_folder, wallet, pwd, s_stop=None):
     import sys
     from subprocess import *
-    cmd = "{0}simple_wallet --wallet-file {1}{2}  --password={3} --rpc-bind-port 18082".format(run_folder, WALLET_FOLDER, wallet, pwd)
+    cmd = '{0}simple_wallet --wallet-file {1}{2}  --password={3} --rpc-bind-port 18082'.format(run_folder, WALLET_FOLDER, wallet, pwd)
 #    proc = Popen(cmd, shell=True, stdout=PIPE)
 #    cnt = 0
 #    while True:
@@ -282,6 +282,7 @@ def start_wallet(run_folder, wallet, pwd, s_stop=None):
 #        sys.stdout.write(data)   # sys.stdout.buffer.write(data) on Python 3.x
 
 #    run_wallet(s_stop, cmd)
+    print(cmd)
     prx2 = Process(target=proxy_f1, args=(cmd))
     prx2.start()
     print('Wallet loaded OK')
