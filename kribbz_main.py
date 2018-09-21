@@ -24,6 +24,7 @@ CRYPTONOTE_DISPLAY_DECIMAL_POINT = 8
 
 WALLET_FOLDER = "/opt/kribbz/"
 APP_FOLDER = "/home/ubuntu/kribbz_v1/build/"  # "/home/alex/devel/Blockchain/kribbz_v1/build/"
+__cmd__ = None
 
 from bottle import Bottle, run, request, server_names, ServerAdapter, HTTPError, route, static_file
 import requests
@@ -163,12 +164,14 @@ def get_payment_id():
     return payment_id
 
 
-def proxy_f1(cmd3):
-    os.system(cmd3)
+def proxy_f1():
+    global __cmd__
+    os.system(__cmd__)
 
 
-def run_wallet(s_stop,  cmd3 = 'killall tcproxy>/dev/null 2>&1'):
-    prx2 = Process(target=proxy_f1, args=(cmd3))
+def run_wallet(s_stop):
+    global __cmd__
+    prx2 = Process(target=proxy_f1, args=())
     prx2.start()
     while(1):
         if (int(s_stop.value) == 1):
@@ -269,7 +272,7 @@ def run_wallet2(wallet = "wallet6", pwd = "Password12345"):
 def start_wallet(run_folder, wallet, pwd, s_stop=None):
     import sys
     from subprocess import *
-    cmd = '{0}simple_wallet --wallet-file {1}{2}  --password={3} --rpc-bind-port 18082'.format(run_folder, WALLET_FOLDER, wallet, pwd)
+    __cmd__ = '{0}simple_wallet --wallet-file {1}{2}  --password={3} --rpc-bind-port 18082'.format(run_folder, WALLET_FOLDER, wallet, pwd)
 #    proc = Popen(cmd, shell=True, stdout=PIPE)
 #    cnt = 0
 #    while True:
@@ -282,8 +285,8 @@ def start_wallet(run_folder, wallet, pwd, s_stop=None):
 #        sys.stdout.write(data)   # sys.stdout.buffer.write(data) on Python 3.x
 
 #    run_wallet(s_stop, cmd)
-    print(cmd)
-    run_wallet(s_stop,  cmd)
+    print(__cmd__)
+    run_wallet(s_stop)
     print('Wallet loaded OK')
 #Wallet initialize failed: can't load wallet file '/opt/kribbz/kribbz_wallet.wallet', check password
 
