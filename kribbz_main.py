@@ -501,7 +501,7 @@ def transfer_coin():
         rez = response.json()
         f.close()
         s_stop.value = 1
-        stop_wallet()
+#        stop_wallet()
         success = True
     except   Exception as ex1:
         out = 'coin transfer not successful'
