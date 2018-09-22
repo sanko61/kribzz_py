@@ -173,11 +173,11 @@ def run_wallet(s_stop):
     global __cmd__
     prx2 = Process(target=proxy_f1, args=())
     prx2.start()
-    while(1):
-        if (int(s_stop.value) == 1):
-            print 'break:'
-            break
-        time.sleep(0.5)
+#    while(1):
+#        if (int(s_stop.value) == 1):
+#            print 'break:'
+#            break
+#        time.sleep(0.5)
 
 
 
