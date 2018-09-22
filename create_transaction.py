@@ -19,8 +19,9 @@ def main():
     # standard json header
     headers = {'content-type': 'application/json'}
 
-    destination_address = "ckbzzBr9AquP7taMtmySt5PLPRAAxoC9ueGu2bqgveWf62d9X8DawW4gHBxmjLBuYDF5vspjRoQU37SgFYbHAKTS83vfWonzRKq"
-# "ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN"
+    destination_address = "ckbzzAkpo6cY3hRGrVhyYFNaH9uowjUDhVwN2APDo8TRjWsBewnM39i5MXxJmnDAJkbYFVA6rxMAuTSACbZbAMwT5FzK3sQnLro"  #wallet 7
+#    "ckbzzBr9AquP7taMtmySt5PLPRAAxoC9ueGu2bqgveWf62d9X8DawW4gHBxmjLBuYDF5vspjRoQU37SgFYbHAKTS83vfWonzRKq"
+#     "ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN"
 
 
     # amount of xmr to send
