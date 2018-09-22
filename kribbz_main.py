@@ -273,17 +273,24 @@ def start_wallet(run_folder, wallet, pwd, s_stop=None):
     import sys
     from subprocess import *
     global __cmd__
-    __cmd__ = '{0}simple_wallet --wallet-file {1}{2}  --password={3} --rpc-bind-port 18082 > /dev/null'.format(run_folder, WALLET_FOLDER, wallet, pwd)
-#    proc = Popen(cmd, shell=True, stdout=PIPE)
-#    cnt = 0
-#    while True:
-#        cnt += 1
-##        if cnt > 40:
-##            break
-#        data = proc.stdout.readline()   # Alternatively proc.stdout.read(1024)
-#        if len(data) == 0:
+    __cmd__ = '{0}simple_wallet --wallet-file {1}{2}  --password={3} --rpc-bind-port 18082'.format(run_folder, WALLET_FOLDER, wallet, pwd)
+    cmd =__cmd__
+    proc = Popen(cmd, shell=True, stdout=PIPE)
+    cnt = 0
+    while True:
+        cnt += 1
+#        if cnt > 40:
 #            break
-#        sys.stdout.write(data)   # sys.stdout.buffer.write(data) on Python 3.x
+        data = proc.stdout.read()  #.readline()   # Alternatively proc.stdout.read(1024)
+        if len(data) == 0:
+            break
+        sys.stdout.write(data)   # sys.stdout.buffer.write(data) on Python 3.x
+        if (int(s_stop.value) == 1):
+            print 'break:'
+            break
+        time.sleep(0.5)
+
+
 
 #    run_wallet(s_stop, cmd)
     print(__cmd__)
@@ -493,6 +500,7 @@ def transfer_coin():
     #    rez = json.dumps(response.json())
         rez = response.json()
         f.close()
+        s_stop.value = 1
         stop_wallet()
         success = True
     except   Exception as ex1:
