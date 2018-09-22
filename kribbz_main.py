@@ -499,7 +499,7 @@ def transfer_coin():
             headers=headers)
     #    rez = json.dumps(response.json())
         rez = response.json()
-        f.close()
+#        f.close()
         s_stop.value = 1
 #        stop_wallet()
         success = True
