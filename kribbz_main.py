@@ -272,6 +272,7 @@ def run_wallet2(wallet = "wallet6", pwd = "Password12345"):
 def start_wallet(run_folder, wallet, pwd, s_stop=None):
     import sys
     from subprocess import *
+    global __cmd__
     __cmd__ = '{0}simple_wallet --wallet-file {1}{2}  --password={3} --rpc-bind-port 18082'.format(run_folder, WALLET_FOLDER, wallet, pwd)
 #    proc = Popen(cmd, shell=True, stdout=PIPE)
 #    cnt = 0
