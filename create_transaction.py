@@ -57,7 +57,7 @@ def main():
                   "amount": int_amount}]
 
     # using given mixin
-    mixin = 4
+    mixin = 0
 
     # get some random payment_id
     payment_id = get_payment_id()

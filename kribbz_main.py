@@ -462,7 +462,7 @@ def transfer_coin():
                   "amount": int_amount}]
 
     # using given mixin
-    mixin = 4
+    mixin = 0
 
     # get some random payment_id
     payment_id = get_payment_id()
@@ -487,6 +487,7 @@ def transfer_coin():
                    "mixin": mixin,
 #                   "payment_id" : payment_id,
                    "kribbz_info": kribbz_info,
+                   "get_tx_key": True,
                    },
         }
     # add standard rpc values
