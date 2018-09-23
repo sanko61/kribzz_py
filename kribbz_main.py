@@ -272,23 +272,23 @@ def run_wallet2(wallet = "wallet6", pwd = "Password12345"):
 def start_wallet(run_folder, wallet, pwd, s_stop=None):
     import sys
     from subprocess import *
-    global __cmd__
-    __cmd__ = '{0}simple_wallet --wallet-file {1}{2}  --password={3} --rpc-bind-port 18082'.format(run_folder, WALLET_FOLDER, wallet, pwd)
+#    global __cmd__
+    cmd = '{0}simple_wallet --wallet-file {1}{2}  --password={3} --rpc-bind-port 18082'.format(run_folder, WALLET_FOLDER, wallet, pwd)
 
-#    proc = Popen(cmd, shell=True, stdout=PIPE)
-#    cnt = 0
-#    while True:
-#        cnt += 1
-##        if cnt > 40:
-##            break
-#        data = proc.stdout.read()  #.readline()   # Alternatively proc.stdout.read(1024)
-#        if len(data) == 0:
-#            break
-#        sys.stdout.write(data)   # sys.stdout.buffer.write(data) on Python 3.x
-#        if (int(s_stop.value) == 1):
-#            print 'break:'
-#            break
-#        time.sleep(0.5)
+    proc = Popen(cmd, shell=True, stdout=PIPE)
+    cnt = 0
+    while True:
+        cnt += 1
+        if cnt > 40:
+            break
+        data = proc.stdout.read()  #.readline()   # Alternatively proc.stdout.read(1024)
+        if len(data) == 0:
+            break
+        sys.stdout.write(data)   # sys.stdout.buffer.write(data) on Python 3.x
+        if (int(s_stop.value) == 1):
+            print 'break:'
+            break
+        time.sleep(0.5)
 
 
 
@@ -429,7 +429,7 @@ def transfer_coin():
 
     s_stop = Value('d', 0.0)
 
-#    start_wallet(run_folder, wallet, pwd, s_stop)
+    start_wallet(run_folder, wallet, pwd, s_stop)
 
     # simple wallet is running on the localhost and port of 18082
     url = WALLET_URL   # "http://localhost:18082/json_rpc"
@@ -502,7 +502,7 @@ def transfer_coin():
         rez = response.json()
 #        f.close()
         s_stop.value = 1
-#        stop_wallet()
+        stop_wallet()
         success = True
     except   Exception as ex1:
         out = 'coin transfer not successful'
