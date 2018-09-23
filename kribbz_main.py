@@ -290,12 +290,10 @@ def start_wallet(run_folder, wallet, pwd, s_stop=None):
             break
         time.sleep(0.5)
 
-
-
-#    run_wallet(s_stop, cmd)
-    print(__cmd__)
-    run_wallet(s_stop)
-    print('Wallet loaded OK')
+##    run_wallet(s_stop, cmd)
+#    print(__cmd__)
+#    run_wallet(s_stop)
+#    print('Wallet loaded OK')
 #Wallet initialize failed: can't load wallet file '/opt/kribbz/kribbz_wallet.wallet', check password
 
 
