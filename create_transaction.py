@@ -9,6 +9,19 @@ import json
 import os
 import binascii
 CRYPTONOTE_DISPLAY_DECIMAL_POINT = 8
+WALLET_URL = "http://localhost:18082/json_rpc"
+
+def cmd_wallet(cmd='store'):
+    rpc_input = {
+        "method": cmd,  # "stop_wallet"
+        }
+    headers = {'content-type': 'application/json'}
+    rpc_input.update({"jsonrpc": "2.0", "id": "0"})
+    response = requests.post(
+        WALLET_URL,
+        data=json.dumps(rpc_input),
+        headers=headers)
+
 
 def main():
     """DONT RUN IT without changing the destination address!!!"""
@@ -166,3 +179,5 @@ def get_payment_id():
 
 if __name__ == "__main__":
     main()
+    cmd_wallet('store')
+    cmd_wallet('stop_wallet')
