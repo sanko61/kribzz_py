@@ -288,7 +288,7 @@ def start_wallet(run_folder, wallet, pwd, s_stop=None):
         if (int(s_stop.value) == 1):
             print 'break:'
             break
-        time.sleep(0.5)
+#        time.sleep(0.5)
 
 ###    run_wallet(s_stop, cmd)
 #    print(__cmd__)
