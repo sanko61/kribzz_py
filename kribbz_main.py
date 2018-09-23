@@ -272,28 +272,28 @@ def run_wallet2(wallet = "wallet6", pwd = "Password12345"):
 def start_wallet(run_folder, wallet, pwd, s_stop=None):
     import sys
     from subprocess import *
-#    global __cmd__
+    global __cmd__
     cmd = '{0}simple_wallet --wallet-file {1}{2}  --password={3} --rpc-bind-port 18082'.format(run_folder, WALLET_FOLDER, wallet, pwd)
-
-    proc = Popen(cmd, shell=True, stdout=PIPE)
-    cnt = 0
-    while True:
-        cnt += 1
-        if cnt > 40:
-            break
-        data = proc.stdout.read()  #.readline()   # Alternatively proc.stdout.read(1024)
-        if len(data) == 0:
-            break
-        sys.stdout.write(data)   # sys.stdout.buffer.write(data) on Python 3.x
-        if (int(s_stop.value) == 1):
-            print 'break:'
-            break
-        time.sleep(0.5)
+    __cmd__ = cmd
+#    proc = Popen(cmd, shell=True, stdout=PIPE)
+#    cnt = 0
+#    while True:
+#        cnt += 1
+#        if cnt > 40:
+#            break
+#        data = proc.stdout.read()  #.readline()   # Alternatively proc.stdout.read(1024)
+#        if len(data) == 0:
+#            break
+#        sys.stdout.write(data)   # sys.stdout.buffer.write(data) on Python 3.x
+#        if (int(s_stop.value) == 1):
+#            print 'break:'
+#            break
+#        time.sleep(0.5)
 
 ##    run_wallet(s_stop, cmd)
-#    print(__cmd__)
-#    run_wallet(s_stop)
-#    print('Wallet loaded OK')
+    print(__cmd__)
+    run_wallet(s_stop)
+    print('Wallet loaded OK')
 #Wallet initialize failed: can't load wallet file '/opt/kribbz/kribbz_wallet.wallet', check password
 
 
