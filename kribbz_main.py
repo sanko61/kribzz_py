@@ -281,7 +281,7 @@ def start_wallet(run_folder, wallet, pwd, s_stop=None):
         cnt += 1
         if cnt > 40:
             break
-        data = proc.stdout.read()  #.readline()   # Alternatively proc.stdout.read(1024)
+        data = proc.stdout.readline()   # Alternatively proc.stdout.read(1024)
         if len(data) == 0:
             break
         sys.stdout.write(data)   # sys.stdout.buffer.write(data) on Python 3.x
