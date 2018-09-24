@@ -279,16 +279,19 @@ def start_wallet(run_folder, wallet, pwd, s_stop=None):
     cnt = 0
     while True:
         cnt += 1
-        if cnt > 40:
+        if cnt > 400:
             break
         data = proc.stdout.readline()   # Alternatively proc.stdout.read(1024)
+        find_cnt =  data.find('Idle')
+        if find_cnt != -1:
+            break
         if len(data) == 0:
             break
         sys.stdout.write(data)   # sys.stdout.buffer.write(data) on Python 3.x
         if (int(s_stop.value) == 1):
             print 'break:'
             break
-        time.sleep(0.5)
+        time.sleep(0.01)
 
 ###    run_wallet(s_stop, cmd)
 #    print(__cmd__)
