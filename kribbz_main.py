@@ -279,7 +279,7 @@ def start_wallet(run_folder, wallet, pwd, s_stop=None):
     cnt = 0
     while True:
         cnt += 1
-        if cnt > 400:
+        if cnt > 4000:
             break
         data = proc.stdout.readline()   # Alternatively proc.stdout.read(1024)
         find_cnt =  data.find('Idle')
@@ -301,9 +301,9 @@ def start_wallet(run_folder, wallet, pwd, s_stop=None):
 
 
 
-def stop_wallet():
+def cmd_wallet(cmd= "stop_wallet"):
     rpc_input = {
-        "method": "stop_wallet",
+        "method": cmd,
         }
     headers = {'content-type': 'application/json'}
     rpc_input.update({"jsonrpc": "2.0", "id": "0"})
@@ -311,6 +311,14 @@ def stop_wallet():
         WALLET_URL,
         data=json.dumps(rpc_input),
         headers=headers)
+
+
+def stop_wallet():
+    cmd_wallet(cmd= "stop_wallet")
+
+
+def save_wallet():
+    cmd_wallet(cmd= "store")
 
 
 @app.post("/transfer_coin")
@@ -502,6 +510,7 @@ def transfer_coin():
     #    rez = json.dumps(response.json())
         rez = response.json()
 #        f.close()
+        save_wallet()
         s_stop.value = 1
         stop_wallet()
         success = True
