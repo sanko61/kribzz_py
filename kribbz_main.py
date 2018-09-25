@@ -540,14 +540,13 @@ def transfer_coin():
     print(rez2)
     return (json.dumps(rez2, indent=4))
 
-@app.post("/get_balance")
-def get_balance():
+def wallet_cmd(cmd="getbalance"):
     sec = None
     try:
         sec = parse_request("wallet")
         for key,val in sec.items():
             d = sec[key]
-        #            psi_log_debug( str(d) + ' = ' + str(val))
+            #            psi_log_debug( str(d) + ' = ' + str(val))
         pwd = sec["password"]
         wallet = sec["wallet_name"]
     except Exception as errtxt:
@@ -562,7 +561,7 @@ def get_balance():
     headers = {'content-type': 'application/json'}
     # simplewallet' procedure/method to call
     rpc_input = {
-        "method": "getbalance"
+        "method": cmd
     }
     # add standard rpc values
     rpc_input.update({"jsonrpc": "2.0", "id": "0"})
@@ -588,6 +587,12 @@ def get_balance():
     rez = json.dumps(response.json())
     print(json.dumps(response.json(), indent=4))
     stop_wallet()
+    return (rez)
+
+
+@app.post("/get_balance")
+def get_balance():
+    rez = wallet_cmd("getbalance")
     return (rez)
 
 
@@ -640,60 +645,7 @@ def get_payments():
 
 @app.post("/get_transfers")
 def get_transfers():
-    sec = None
-    try:
-        sec = parse_request("wallet")
-        for key,val in sec.items():
-            d = sec[key]
-            #            psi_log_debug( str(d) + ' = ' + str(val))
-        pwd = sec["password"]
-        wallet = sec["wallet_name"]
-    except Exception as errtxt:
-        psi_log_error(str(errtxt))
-        pass
-    print(pwd, wallet)
-    start_wallet(APP_FOLDER, wallet, pwd)
-
-    # simple wallet is running on the localhost and port of 18082
-    url = WALLET_URL  # "http://localhost:18082/json_rpc"
-
-    # standard json header
-    headers = {'content-type': 'application/json'}
-
-    # simplewallet' procedure/method to call
-    rpc_input = {
-        "method": "get_transfers",
-    }
-
-    # add standard rpc values
-    rpc_input.update({"jsonrpc": "2.0", "id": "0"})
-
-    # execute the rpc request
-    response = requests.post(
-        url,
-        data=json.dumps(rpc_input),
-        headers=headers)
-
-    # make json dict with response
-    response_json = response.json()
-
-    # amounts in cryptonote are encoded in a way which is convenient
-    # for a computer, not a user. Thus, its better need to recode them
-    # to something user friendly, before displaying them.
-    #
-    # For examples:
-    # 4760000000000 is 4.76
-    # 80000000000   is 0.08
-    #
-    if "result" in response_json:
-        if "transfers" in response_json["result"]:
-            for transfer in response_json["result"]["transfers"]:
-                transfer["amount"] = float(get_money(str(transfer["amount"])))
-
-
-    rez = json.dumps(response.json())
-    print(json.dumps(response.json(), indent=4))
-    stop_wallet()
+    rez = wallet_cmd(cmd="get_transfers")
     return (rez)
 
 
@@ -808,6 +760,18 @@ def create_address():
 
     rez = {"address": address, "msg": out, "error":error, "success":success}
     return (json.dumps(rez, indent=4))
+
+
+@app.post("/get_address")
+def get_address():
+    rez = wallet_cmd(cmd="get_address")
+    return (rez)
+
+
+@app.post("/get_height")
+def get_height():
+    rez = wallet_cmd(cmd="get_height")
+    return (rez)
 
 
 

@@ -16,6 +16,14 @@ curl -X POST \
 -d @transfer.json \
 -X POST http://52.13.195.226:8804/transfer_coin
 
+
+5. Get  wallet address
+   curl  -H "Content-Type: application/json" --request POST -d '{"wallet":{ "password":"Password12345","wallet_name":"wallet7"}}' "http://52.13.195.226:8804/get_address"
+
+6. Get  wallet height
+   curl  -H "Content-Type: application/json" --request POST -d '{"wallet":{ "password":"Password12345","wallet_name":"wallet7"}}' "http://52.13.195.226:8804/get_height"
+
+
 Server 2:  54.70.55.32
 
 1. Create address of a wallet
