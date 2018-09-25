@@ -288,9 +288,10 @@ def start_wallet(run_folder, wallet, pwd, s_stop=None):
         if len(data) == 0:
             break
         sys.stdout.write(data)   # sys.stdout.buffer.write(data) on Python 3.x
-        if (int(s_stop.value) == 1):
-            print 'break:'
-            break
+        if s_stop is not None:
+            if (int(s_stop.value) == 1):
+                print 'break:'
+                break
         time.sleep(0.01)
 
 ###    run_wallet(s_stop, cmd)
