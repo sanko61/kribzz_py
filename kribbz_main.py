@@ -655,6 +655,10 @@ def get_transfers():
 def search_kribbz():
     rez = wallet_cmd(cmd="get_transfers")
     try:
+        tr1 = rez['result']
+        print ('rez=' + str(tr1))
+        tr2 =  tr1["transfers"]
+        print ('transfers=' + str(tr2))
         transfers = rez['result']['transfers']
     except   Exception as ex1:
         transfers = None
