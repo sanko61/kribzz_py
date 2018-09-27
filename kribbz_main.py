@@ -672,12 +672,13 @@ def search_kribbz():
     if transfers is not None  and sec_filter is not None:
         for tr in transfers:
             found = True
+            print('Start- ',str(tr))
             try:
                 kribbz2 = json.loads(tr['kribbz_info'])
                 print (kribbz2)
                 for key,val in sec_filter.items():
                     d = sec_filter[key]
-                    if tr['kribbz_info'][key] != d:
+                    if kribbz2[key] != d:
                         found = False
                         break
                     print(key, d, 'OK')
