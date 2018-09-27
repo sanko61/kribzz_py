@@ -129,7 +129,17 @@ def get_balance():
 def get_transfers():
     rep = post('get_transfers',
         {"wallet":
-             {"password":"Password12345","wallet_name":"kribbz_wallet",}},
+             {"password":"Password12345","wallet_name":"wal6",}},  # "wallet7"
+    )
+    return rep
+
+
+def search_kribbz():
+    rep = post('search_kribbz',
+        {"wallet":
+             {"password":"Password12345","wallet_name":"wallet7",},  # "wallet7"
+        "filter":
+             {"stateCode":"CA", "zipCode":"90210"}},
     )
     return rep
 

@@ -650,6 +650,56 @@ def get_transfers():
     return (rez)
 
 
+
+@app.post("/search_kribbz")
+def search_kribbz():
+    rez = wallet_cmd(cmd="get_transfers")
+    try:
+        transfers = rez['result']['transfers']
+    except   Exception as ex1:
+        transfers = None
+
+    sec_filter = None
+    try:
+        sec_filter = parse_request("filter")
+        print(sec_filter)
+    except Exception as errtxt:
+        psi_log_error(str(errtxt))
+        pass
+
+    rez_output = []
+    cnt = 0
+    if transfers is not None  and sec_filter is not None:
+        for tr in transfers:
+            found = True
+            try:
+                for key,val in sec_filter.items():
+                    d = sec_filter[key]
+                    if tr['kribbz_info'][key] != d:
+                        found = False
+                        break
+                    print(key, d, 'OK')
+            except :
+                found = False
+
+            if found:
+                rez_output.append(tr)
+                cnt += 1
+        out = 'kribbz search successful'
+        success = True
+        error = "0"
+    else:
+        out = 'kribbz search  not successful'
+        error = rez
+        success = False
+
+    print('cnt found=' + str(cnt))
+    rez2 = {"transfers": rez_output, "msg": out, "error":error, "success":success}
+
+    print(rez2)
+    return (json.dumps(rez2, indent=4))
+
+
 def get_money(amount):
     """decode cryptonote amount format to user friendly format. Hope its correct.
 
