@@ -653,9 +653,10 @@ def get_transfers():
 
 @app.post("/search_kribbz")
 def search_kribbz():
-    rez = wallet_cmd(cmd="get_transfers")
+    rez_s = wallet_cmd(cmd="get_transfers")
+    rez = json.loads(rez_s)
     try:
-        tr1 = rez['result']
+        tr1 =  rez['result']
         print ('rez=' + str(tr1))
         tr2 =  tr1["transfers"]
         print ('transfers=' + str(tr2))
