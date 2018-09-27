@@ -552,7 +552,7 @@ def wallet_cmd(cmd="getbalance"):
         wallet = sec["wallet_name"]
     except Exception as errtxt:
         psi_log_error(str(errtxt))
-        pass
+        return None
     print(pwd, wallet)
     start_wallet(APP_FOLDER, wallet, pwd)
 
@@ -585,8 +585,11 @@ def wallet_cmd(cmd="getbalance"):
     # shown how to convert cryptonote values to user friendly format.
 
     # pretty print json output
-    rez = json.dumps(response.json())
-    print(json.dumps(response.json(), indent=4))
+    try:
+        rez = json.dumps(response.json())
+        print(json.dumps(response.json(), indent=4))
+    except:
+        rez = None
     stop_wallet()
     return (rez)
 
@@ -594,7 +597,15 @@ def wallet_cmd(cmd="getbalance"):
 @app.post("/get_balance")
 def get_balance():
     rez = wallet_cmd("getbalance")
-    return (rez)
+    if rez is not None:
+        out = 'get_balance OK'
+        success = True
+        error = "0"
+    else:
+        error = 'get_balance error'
+        success = False
+    rez = {"result": rez, "msg": out, "error":error, "success":success}
+    return (json.dumps(rez, indent=4))
 
 
 @app.post("/get_payments")
@@ -643,12 +654,18 @@ def get_payments():
     return (json.dumps(response.json()))
 
 
-
 @app.post("/get_transfers")
 def get_transfers():
     rez = wallet_cmd(cmd="get_transfers")
-    return (rez)
-
+    if rez is not None:
+        out = 'get_transfers OK'
+        success = True
+        error = "0"
+    else:
+        error = 'get_transfers error'
+        success = False
+    rez = {"result": rez, "msg": out, "error":error, "success":success}
+    return (json.dumps(rez, indent=4))
 
 
 @app.post("/search_kribbz")
@@ -656,10 +673,6 @@ def search_kribbz():
     rez_s = wallet_cmd(cmd="get_transfers")
     rez = json.loads(rez_s)
     try:
-        tr1 =  rez['result']
-        print ('rez=' + str(tr1))
-        tr2 =  tr1["transfers"]
-        print ('transfers=' + str(tr2))
         transfers = rez['result']['transfers']
     except   Exception as ex1:
         transfers = None
@@ -677,10 +690,8 @@ def search_kribbz():
     if transfers is not None  and sec_filter is not None:
         for tr in transfers:
             found = True
-            print('Start- ',str(tr))
             try:
                 kribbz2 = json.loads(tr['kribbz_info'])
-                print (kribbz2)
                 for key,val in sec_filter.items():
                     d = sec_filter[key]
                     if kribbz2[key] != d:
@@ -824,13 +835,32 @@ def create_address():
 @app.post("/get_address")
 def get_address():
     rez = wallet_cmd(cmd="get_address")
-    return (rez)
+
+    if rez is not None:
+        out = 'get_address OK'
+        success = True
+        error = "0"
+    else:
+        error = 'get_address error'
+        success = False
+    rez = {"result": rez, "msg": out, "error":error, "success":success}
+    return (json.dumps(rez, indent=4))
+
+
 
 
 @app.post("/get_height")
 def get_height():
     rez = wallet_cmd(cmd="get_height")
-    return (rez)
+    if rez is not None:
+        out = 'get_height OK'
+        success = True
+        error = "0"
+    else:
+        error = 'get_height error'
+        success = False
+    rez = {"result": rez, "msg": out, "error":error, "success":success}
+    return (json.dumps(rez, indent=4))
 
 
 
