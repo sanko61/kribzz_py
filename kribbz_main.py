@@ -673,6 +673,8 @@ def search_kribbz():
         for tr in transfers:
             found = True
             try:
+                kribbz2 = json.loads(tr['kribbz_info'])
+                print (kribbz2)
                 for key,val in sec_filter.items():
                     d = sec_filter[key]
                     if tr['kribbz_info'][key] != d:
