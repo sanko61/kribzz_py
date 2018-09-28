@@ -277,6 +277,7 @@ def start_wallet(run_folder, wallet, pwd, s_stop=None):
     __cmd__ = cmd
     proc = Popen(cmd, shell=True, stdout=PIPE)
     cnt = 0
+    ret = True
     while True:
         cnt += 1
         if cnt > 4000:
@@ -284,6 +285,10 @@ def start_wallet(run_folder, wallet, pwd, s_stop=None):
         data = proc.stdout.readline()   # Alternatively proc.stdout.read(1024)
         find_cnt =  data.find('Idle')
         if find_cnt != -1:
+            break
+        find_stop =  data.find('Stopped')
+        if find_stop != -1:
+            ret = False
             break
         if len(data) == 0:
             break
@@ -293,6 +298,7 @@ def start_wallet(run_folder, wallet, pwd, s_stop=None):
                 print 'break:'
                 break
         time.sleep(0.01)
+    return ret
 
 ###    run_wallet(s_stop, cmd)
 #    print(__cmd__)
@@ -303,15 +309,19 @@ def start_wallet(run_folder, wallet, pwd, s_stop=None):
 
 
 def cmd_wallet(cmd= "stop_wallet"):
-    rpc_input = {
-        "method": cmd,
-        }
-    headers = {'content-type': 'application/json'}
-    rpc_input.update({"jsonrpc": "2.0", "id": "0"})
-    response = requests.post(
-        WALLET_URL,
-        data=json.dumps(rpc_input),
-        headers=headers)
+    try:
+        rpc_input = {
+            "method": cmd,
+            }
+        headers = {'content-type': 'application/json'}
+        rpc_input.update({"jsonrpc": "2.0", "id": "0"})
+        response = requests.post(
+            WALLET_URL,
+            data=json.dumps(rpc_input),
+            headers=headers)
+    except:
+        print('No connect or other error')
+        pass
 
 
 def stop_wallet():
@@ -439,7 +449,10 @@ def transfer_coin():
 
     s_stop = Value('d', 0.0)
 
-    start_wallet(run_folder, wallet, pwd, s_stop)
+    ret = start_wallet(run_folder, wallet, pwd, s_stop)
+    if not ret:
+        rez2 = {"tx_hash": None, "msg": 'wallet error', "error":True, "success":False}
+        return (json.dumps(rez2, indent=4))
 
     # simple wallet is running on the localhost and port of 18082
     url = WALLET_URL   # "http://localhost:18082/json_rpc"
@@ -554,43 +567,47 @@ def wallet_cmd(cmd="getbalance"):
         psi_log_error(str(errtxt))
         return None
     print(pwd, wallet)
-    start_wallet(APP_FOLDER, wallet, pwd)
 
-    # simple wallet is running on the localhost and port of 18082
-    url = WALLET_URL
-    # standard json header
-    headers = {'content-type': 'application/json'}
-    # simplewallet' procedure/method to call
-    rpc_input = {
-        "method": cmd
-    }
-    # add standard rpc values
-    rpc_input.update({"jsonrpc": "2.0", "id": "0"})
+    w_ret = start_wallet(APP_FOLDER, wallet, pwd)
+    if not w_ret:
+        return None
 
-    # execute the rpc request
-    response = requests.post(
-        url,
-        data=json.dumps(rpc_input),
-        headers=headers)
-
-    # amounts in cryptonote are encoded in a way which is convenient
-    # for a computer, not a user. Thus, its better need to recode them
-    # to something user friendly, before displaying them.
-    #
-    # For examples:
-    # 4760000000000 is 4.76
-    # 80000000000   is 0.08
-    #
-    # In example 3 "Basic example 3: get incoming transfers" it is
-    # shown how to convert cryptonote values to user friendly format.
-
-    # pretty print json output
     try:
+        # simple wallet is running on the localhost and port of 18082
+        url = WALLET_URL
+        # standard json header
+        headers = {'content-type': 'application/json'}
+        # simplewallet' procedure/method to call
+        rpc_input = {
+            "method": cmd
+        }
+        # add standard rpc values
+        rpc_input.update({"jsonrpc": "2.0", "id": "0"})
+
+        # execute the rpc request
+        response = requests.post(
+            url,
+            data=json.dumps(rpc_input),
+            headers=headers)
+
+        # amounts in cryptonote are encoded in a way which is convenient
+        # for a computer, not a user. Thus, its better need to recode them
+        # to something user friendly, before displaying them.
+        #
+        # For examples:
+        # 4760000000000 is 4.76
+        # 80000000000   is 0.08
+        #
+        # In example 3 "Basic example 3: get incoming transfers" it is
+        # shown how to convert cryptonote values to user friendly format.
+
+        # pretty print json output
         rez = json.dumps(response.json())
         print(json.dumps(response.json(), indent=4))
     except:
         rez = None
     stop_wallet()
+
     return (rez)
 
 

@@ -119,7 +119,7 @@ def get_balance():
         {"wallet":
              {
                  "password":"Password12345",
-                 "wallet_name":"wal6",
+                 "wallet_name":"wal6m",
                  }
         },
     )
