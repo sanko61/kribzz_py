@@ -619,6 +619,7 @@ def get_balance():
         success = True
         error = "0"
     else:
+        out = 'get_balance error'
         error = 'get_balance error'
         success = False
     rez = {"result": rez, "msg": out, "error":error, "success":success}
@@ -679,6 +680,7 @@ def get_transfers():
         success = True
         error = "0"
     else:
+        out = 'get_transfer error'
         error = 'get_transfers error'
         success = False
     rez = {"result": rez, "msg": out, "error":error, "success":success}
