@@ -107,7 +107,7 @@ def transfer_coin():
           "wallet":
               {
                   "password":"Password12345",
-                  "wallet_name":"kribbz_wallet",
+                  "wallet_name":"kribbz_wallet1",
                   },
         },
     )
@@ -129,7 +129,7 @@ def get_balance():
 def get_transfers():
     rep = post('get_transfers',
         {"wallet":
-             {"password":"Password12345","wallet_name":"wal6",}},  # "wallet7"
+             {"password":"Password12345","wallet_name":"wal6m",}},  # "wallet7"
     )
     return rep
 
@@ -137,7 +137,7 @@ def get_transfers():
 def search_kribbz():
     rep = post('search_kribbz',
         {"wallet":
-             {"password":"Password12345","wallet_name":"wallet7",},  # "wallet7"
+             {"password":"Password12345","wallet_name":"wallet7m",},  # "wallet7"
         "filter":
              {"stateCode":"CA", "zipCode":"90210"}},
     )

@@ -844,6 +844,7 @@ def create_address():
         success = True
         error = "0"
     else:
+        out = 'Wallet error'
         error = debug
         success = False
 
@@ -860,6 +861,7 @@ def get_address():
         success = True
         error = "0"
     else:
+        out = 'get_address error'
         error = 'get_address error'
         success = False
     rez = {"result": rez, "msg": out, "error":error, "success":success}
@@ -876,6 +878,7 @@ def get_height():
         success = True
         error = "0"
     else:
+        out = 'get_height error'
         error = 'get_height error'
         success = False
     rez = {"result": rez, "msg": out, "error":error, "success":success}
