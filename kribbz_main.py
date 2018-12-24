@@ -525,6 +525,7 @@ def transfer_coin():
         rez = response.json()
 #        f.close()
         save_wallet()
+        time.sleep(2)  # sleep 
         s_stop.value = 1
         stop_wallet()
         success = True
