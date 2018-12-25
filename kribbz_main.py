@@ -906,7 +906,8 @@ def get_transaction():
 
     headers = {'content-type': 'application/json'}
     rpc_input = {
-        "transaction": {"txs_hashes":["4e5fa2439ce317be2af025f887a773d962c9dd76bc5a5442cdf7a8715ab37543"]}
+        "txs_hashes":["4e5fa2439ce317be2af025f887a773d962c9dd76bc5a5442cdf7a8715ab37543"],
+        "decode_as_json":True,
     }
 
     # add standard rpc values
