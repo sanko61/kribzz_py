@@ -902,12 +902,11 @@ def get_transaction():
 
   #   curl  -H 'Content-Type: application/json' --request POST -d '{"jsonrpc":"2.0","id":"0","txs_hashes":["4e5fa2439ce317be2af025f887a773d962c9dd76bc5a5442cdf7a8715ab37543"], "decode_as_json":true }' 'http://127.0.0.1:23926/gettransactions'
 
-    url = DEMON_URL # + '/gettransactions'
+    url = DEMON_URL  + '/gettransactions'
 
     headers = {'content-type': 'application/json'}
     rpc_input = {
-        "method": "gettransactions",
-        "params": {"txs_hashes":["4e5fa2439ce317be2af025f887a773d962c9dd76bc5a5442cdf7a8715ab37543"]}
+        "transaction": {"txs_hashes":["4e5fa2439ce317be2af025f887a773d962c9dd76bc5a5442cdf7a8715ab37543"]}
     }
 
     # add standard rpc values
