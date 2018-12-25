@@ -893,10 +893,8 @@ def get_transaction():
     psi_log_info("POST: %s" % request.POST.dict)
     trx_data = None
     try:
-        trx_data = parse_request("txs_hash")
-    #        for key,val in kr_data.items():
-    #            d = kr_data[key]
-    #            psi_log_debug( str(d) + ' = ' + str(val))
+        kr_amnt = parse_request("transaction")
+        trx_data = kr_amnt["txs_hash"]
     except Exception as errtxt:
         psi_log_error(str(errtxt))
         pass
