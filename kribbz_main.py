@@ -898,9 +898,7 @@ def get_transaction():
     except Exception as errtxt:
         psi_log_error(str(errtxt))
         pass
-    print(trx_data)
-
-  #   curl  -H 'Content-Type: application/json' --request POST -d '{"jsonrpc":"2.0","id":"0","txs_hashes":["4e5fa2439ce317be2af025f887a773d962c9dd76bc5a5442cdf7a8715ab37543"], "decode_as_json":true }' 'http://127.0.0.1:23926/gettransactions'
+#    print(trx_data)
 
     url = DEMON_URL  + '/gettransactions'
 
@@ -923,7 +921,7 @@ def get_transaction():
     rez = response.json()
 
     if rez is not None:
-        out = 'get_height OK'
+        out = 'get_transaction OK'
         success = True
         error = "0"
     else:
