@@ -26,6 +26,8 @@ WALLET_FOLDER = "/opt/kribbz/"
 APP_FOLDER = "/home/ubuntu/kribbz_v1/build/"  # "/home/alex/devel/Blockchain/kribbz_v1/build/"
 __cmd__ = None
 
+DEMON_URL = 'http://127.0.0.1:23926'
+
 from bottle import Bottle, run, request, server_names, ServerAdapter, HTTPError, route, static_file
 import requests
 import sqlite3
@@ -869,8 +871,6 @@ def get_address():
     return (json.dumps(rez, indent=4))
 
 
-
-
 @app.post("/get_height")
 def get_height():
     rez = wallet_cmd(cmd="get_height")
@@ -881,6 +881,56 @@ def get_height():
     else:
         out = 'get_height error'
         error = 'get_height error'
+        success = False
+    rez = {"result": rez, "msg": out, "error":error, "success":success}
+    return (json.dumps(rez, indent=4))
+
+
+@app.post("/get_transaction")
+def get_transaction():
+    rez = None
+    psi_log_info(request.url)
+    psi_log_info("POST: %s" % request.POST.dict)
+    trx_data = None
+    try:
+        trx_data = parse_request("txs_hash")
+    #        for key,val in kr_data.items():
+    #            d = kr_data[key]
+    #            psi_log_debug( str(d) + ' = ' + str(val))
+    except Exception as errtxt:
+        psi_log_error(str(errtxt))
+        pass
+    print(trx_data)
+
+  #   curl  -H 'Content-Type: application/json' --request POST -d '{"jsonrpc":"2.0","id":"0","txs_hashes":["4e5fa2439ce317be2af025f887a773d962c9dd76bc5a5442cdf7a8715ab37543"], "decode_as_json":true }' 'http://127.0.0.1:23926/gettransactions'
+
+    url = DEMON_URL # + '/gettransactions'
+
+    headers = {'content-type': 'application/json'}
+    rpc_input = {
+        "method": "gettransactions",
+        "params": {"txs_hashes":["4e5fa2439ce317be2af025f887a773d962c9dd76bc5a5442cdf7a8715ab37543"]}
+    }
+
+    # add standard rpc values
+    rpc_input.update({"jsonrpc": "2.0", "id": "0"})
+
+    # execute the rpc request
+    response = requests.post(
+        url,
+        data=json.dumps(rpc_input),
+        headers=headers)
+
+    # make json dict with response
+    rez = response.json()
+
+    if rez is not None:
+        out = 'get_height OK'
+        success = True
+        error = "0"
+    else:
+        out = 'get_transaction error'
+        error = 'get_transaction error'
         success = False
     rez = {"result": rez, "msg": out, "error":error, "success":success}
     return (json.dumps(rez, indent=4))
