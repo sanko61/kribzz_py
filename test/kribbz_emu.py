@@ -169,12 +169,12 @@ def create_address():
     return rep
 
 
-def get_trans():
+def get_trans(txs_hash = "4e5fa2439ce317be2af025f887a773d962c9dd76bc5a5442cdf7a8715ab37543"):
 #     curl  -H "Content-Type: application/json" --request POST -d '{"wallet":{ "password":"Password12345","wallet_name":"wallet7"}}' "http://52.13.195.226:8804/create_address"
     rep = post('get_transaction',
         {"transaction":
             {
-                "txs_hash": "4e5fa2439ce317be2af025f887a773d962c9dd76bc5a5442cdf7a8715ab37543",
+                "txs_hash": txs_hash,
             }
         },
     )
