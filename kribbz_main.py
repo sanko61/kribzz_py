@@ -1001,12 +1001,12 @@ def get_blockhash():
             url,
             data=json.dumps(rpc_input),
             headers=headers)
+        rez = response.json()
     except:
         print('No connect or other error')
         pass
 
     # make json dict with response
-    rez = response.json()
     print (rez)
 
     if rez is not None:

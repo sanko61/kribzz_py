@@ -22,3 +22,6 @@ if __name__ == "__main__":
 
     r = get_blockhash(2551)
     print (r)
+
+    r = get_blockhash(-1)
+    print (r)
