@@ -181,6 +181,13 @@ def get_trans(txs_hash = "4e5fa2439ce317be2af025f887a773d962c9dd76bc5a5442cdf7a8
     return rep
 
 
+def get_blockcount():
+#     curl  -H "Content-Type: application/json" --request POST -d '{"wallet":{ "password":"Password12345","wallet_name":"wallet7"}}' "http://52.13.195.226:8804/create_address"
+    rep = post('get_blockcount',
+        {},
+    )
+    return rep
+
 
 def delete_address():
     rep = post('delete_address',{}, )

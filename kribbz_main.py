@@ -932,6 +932,45 @@ def get_transaction():
     return (json.dumps(rez, indent=4))
 
 
+#curl  -H 'Content-Type: application/json' --request POST -d '{"jsonrpc":"2.0","id":"0","method":"getblockcount","params": {}}' 'http://127.0.0.1:23926/json_rpc'
+@app.post("/get_blockcount")
+def get_blockcoun():
+    rez = None
+    psi_log_info(request.url)
+    psi_log_info("POST: %s" % request.POST.dict)
+
+    url = DEMON_URL  + '/json_rpc'
+
+    try:
+        rpc_input = {
+            "method": 'getblockcount',
+            "params": {},
+            }
+        headers = {'content-type': 'application/json'}
+        rpc_input.update({"jsonrpc": "2.0", "id": "0"})
+        response = requests.post(
+            url,
+            data=json.dumps(rpc_input),
+            headers=headers)
+    except:
+        print('No connect or other error')
+        pass
+
+    # make json dict with response
+    rez = response.json()
+    print (rez)
+
+    if rez is not None:
+        out = 'get_transaction OK'
+        success = True
+        error = "0"
+    else:
+        out = 'get_transaction error'
+        error = 'get_transaction error'
+        success = False
+    rez = {"result": rez, "msg": out, "error":error, "success":success}
+    return (json.dumps(rez, indent=4))
+
 
 @app.route('/hello/:name')
 def index(name='World'):

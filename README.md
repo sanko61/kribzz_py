@@ -97,6 +97,10 @@ curl -X POST \
    curl  -H "Content-Type: application/json" --request POST -d '{"wallet":{ "password":"Password12345","wallet_name":"wallet7"},"filter":{"stateCode":"CA", "zipCode":"90210"}}' "http://52.13.195.226:8804/search_kribbz"
 
 
+8. Get transaction by hash:
+   curl  -H "Content-Type: application/json" --request POST -d '{"transaction":{"txs_hash": "35b09d24dd11d4b5616951bfe7b0c460a1e2b759daee5ac02c76e1b53741e9d3"}}' "http://52.13.195.226:8804/get_transaction"
+
+
 5. Kribbz blockchain server. DEMON RPC API requests
 =======================================================
 
@@ -141,3 +145,4 @@ curl  -H 'Content-Type: application/json' --request POST -d '{"jsonrpc":"2.0","i
 curl  -H 'Content-Type: application/json' --request POST -d '{"jsonrpc":"2.0","id":"0","txs_hashes":["4e5fa2439ce317be2af025f887a773d962c9dd76bc5a5442cdf7a8715ab37543"], "decode_as_json":true }' 'http://127.0.0.1:23926/gettransactions'
 
 See   more requests  in:  https://getmonero.org/resources/developer-guides/daemon-rpc.html#get_transaction_pool
+
