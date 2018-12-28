@@ -932,7 +932,6 @@ def get_transaction():
     return (json.dumps(rez, indent=4))
 
 
-#curl  -H 'Content-Type: application/json' --request POST -d '{"jsonrpc":"2.0","id":"0","method":"getblockcount","params": {}}' 'http://127.0.0.1:23926/json_rpc'
 @app.post("/get_blockcount")
 def get_blockcoun():
     rez = None
@@ -970,6 +969,57 @@ def get_blockcoun():
         success = False
     rez = {"result": rez, "msg": out, "error":error, "success":success}
     return (json.dumps(rez, indent=4))
+
+
+
+@app.post("/get_blockhash")
+def get_blockhash():
+#    curl  -H 'Content-Type: application/json' --request POST -d '{"jsonrpc":"2.0","id":"0","method":"on_getblockhash","params":[21]}' 'http://127.0.0.1:23926/json_rpc'
+
+    rez = None
+    psi_log_info(request.url)
+    psi_log_info("POST: %s" % request.POST.dict)
+    bl_num = None
+    try:
+        kr_amnt = parse_request("blockchain")
+        bl_num = kr_amnt["block_number"]
+    except Exception as errtxt:
+        psi_log_error(str(errtxt))
+        pass
+    print(bl_num)
+
+    url = DEMON_URL  + '/json_rpc'
+
+    try:
+        rpc_input = {
+            "method": 'on_getblockhash',
+            "params": {bl_num},
+            }
+        headers = {'content-type': 'application/json'}
+        rpc_input.update({"jsonrpc": "2.0", "id": "0"})
+        response = requests.post(
+            url,
+            data=json.dumps(rpc_input),
+            headers=headers)
+    except:
+        print('No connect or other error')
+        pass
+
+    # make json dict with response
+    rez = response.json()
+    print (rez)
+
+    if rez is not None:
+        out = 'get_blockhash OK'
+        success = True
+        error = "0"
+    else:
+        out = 'get_blockhash error'
+        error = 'get_blockhash error'
+        success = False
+    rez = {"result": rez, "msg": out, "error":error, "success":success}
+    return (json.dumps(rez, indent=4))
+
 
 
 @app.route('/hello/:name')

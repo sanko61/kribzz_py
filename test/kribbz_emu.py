@@ -189,6 +189,20 @@ def get_blockcount():
     return rep
 
 
+def get_blockhash(bl_num = 1):
+#     curl  -H "Content-Type: application/json" --request POST -d '{"wallet":{ "password":"Password12345","wallet_name":"wallet7"}}' "http://52.13.195.226:8804/create_address"
+    rep = post('get_blockhash',
+        {
+            "blockchain":
+            {
+                "block_number": bl_num,
+            }
+        },
+    )
+    return rep
+
+
+
 def delete_address():
     rep = post('delete_address',{}, )
     return rep
