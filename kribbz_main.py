@@ -993,7 +993,7 @@ def get_blockhash():
     try:
         rpc_input = {
             "method": 'on_getblockhash',
-            "params": {bl_num},
+            "params": [bl_num],
             }
         headers = {'content-type': 'application/json'}
         rpc_input.update({"jsonrpc": "2.0", "id": "0"})
