@@ -10,9 +10,9 @@ import datetime
 from kribbz_emu import transfer_coin
 
 if __name__ == "__main__":
-    tx_id = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    r1 = transfer_coin(transactionId = tx_id)
-    print (r1)
+#    tx_id = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+#    r1 = transfer_coin(transactionId = tx_id)
+#    print (r1)
 
 
     # "ckbzz6v3RFwV3s5je4PzcDGTZdsHy5Dg13dCrXwYDctYQi1UXYd3jVDPAfNHJmrSxx4TvMnh1pVUUNudRrqXEL7D46nY8D4Virp",  # wallet24
@@ -22,7 +22,7 @@ if __name__ == "__main__":
     # "ckbzz7dYVt6T4sBWhjp8wqQUMgoE8hWyfFCcBjjdLrzEdJU9SQsXjm73rb4VzZt7RxGzuLCAs4ZtQQMJzeELHP841TbYDt4Rm9V"  wal6
 
     tx_id = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    r2 = transfer_coin(amnt=0.0000001, dst = "ckbzz6v3RFwV3s5je4PzcDGTZdsHy5Dg13dCrXwYDctYQi1UXYd3jVDPAfNHJmrSxx4TvMnh1pVUUNudRrqXEL7D46nY8D4Virp" , transactionId = tx_id)
+    r2 = transfer_coin(amnt=0.00000001, dst = "ckbzz6v3RFwV3s5je4PzcDGTZdsHy5Dg13dCrXwYDctYQi1UXYd3jVDPAfNHJmrSxx4TvMnh1pVUUNudRrqXEL7D46nY8D4Virp" , transactionId = tx_id)
     print (r2)
 
 
