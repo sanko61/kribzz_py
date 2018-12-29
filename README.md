@@ -96,9 +96,40 @@ curl -X POST \
 7. Search by kribbz fields in wallet
    curl  -H "Content-Type: application/json" --request POST -d '{"wallet":{ "password":"Password12345","wallet_name":"wallet7"},"filter":{"stateCode":"CA", "zipCode":"90210"}}' "http://52.13.195.226:8804/search_kribbz"
 
-
 8. Get transaction by hash:
    curl  -H "Content-Type: application/json" --request POST -d '{"transaction":{"txs_hash": "35b09d24dd11d4b5616951bfe7b0c460a1e2b759daee5ac02c76e1b53741e9d3"}}' "http://52.13.195.226:8804/get_transaction"
+
+9. Get blockchain count:
+   curl  -H "Content-Type: application/json" --request POST   "http://52.13.195.226:8804/get_blockcount"
+    Result JSON:
+    {
+        "msg": "get_transaction OK",
+        "result": {
+            "jsonrpc": "2.0",
+            "id": "0",
+            "result": {
+                "count": 22298,
+                "status": "OK"
+            }
+        },
+        "success": true,
+        "error": "0"
+     }
+
+10. Get blockhash:
+   curl  -H "Content-Type: application/json" --request POST -d '{"blockchain":{"block_number": 21}}' "http://52.13.195.226:8804/get_blockhash"
+   Result JSON:
+    {
+        "msg": "get_blockhash OK",
+        "result": {
+            "jsonrpc": "2.0",
+            "id": "0",
+            "result": "7dfb5b31a3e9e04f389a7db3c8f7d75c37db46fc73383bc4f157b300f9f3753c"
+        },
+        "success": true,
+        "error": "0"
+    }
+
 
 
 5. Kribbz blockchain server. DEMON RPC API requests
