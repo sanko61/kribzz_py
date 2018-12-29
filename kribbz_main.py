@@ -101,6 +101,8 @@ def get_amount(amount):
     """
 
     str_amount = str(amount)
+    if str_amount.find("e") != -1:
+        str_amount = '%.8f' % amount
 
     fraction_size = 0
 

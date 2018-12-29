@@ -234,8 +234,25 @@ if __name__ == "__main__":
 #    r= create_address()
 #    print (r)
 
-    r= get_trans()
-    print (r)
+#    r= get_trans()
+#    print (r)
+
+    from kribbz_main import get_amount
+    amount = 0.00000001
+    s_am = '%.8f' % amount
+    print(s_am)
+    int_amount = int(get_amount(amount))
+    print(int_amount)
+
+    amount = 22.111
+    str_amount = str(amount)
+    if str_amount.find("e") != -1:
+        str_amount = '%.8f' % amount
+
+
+
+    int_amount = int(get_amount(amount))
+    print(int_amount)
 
 
     pass
