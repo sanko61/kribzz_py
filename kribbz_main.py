@@ -971,7 +971,6 @@ def get_blockcoun():
     return (json.dumps(rez, indent=4))
 
 
-
 @app.post("/get_blockhash")
 def get_blockhash():
 #    curl  -H 'Content-Type: application/json' --request POST -d '{"jsonrpc":"2.0","id":"0","method":"on_getblockhash","params":[21]}' 'http://127.0.0.1:23926/json_rpc'
@@ -1020,6 +1019,45 @@ def get_blockhash():
     rez = {"result": rez, "msg": out, "error":error, "success":success}
     return (json.dumps(rez, indent=4))
 
+
+@app.post("/get_lastblockheader")
+def get_lastblockheader():
+#curl  -H 'Content-Type: application/json' --request POST -d '{"jsonrpc":"2.0","id":"0","method":"getlastblockheader","params":{}}' 'http://127.0.0.1:23926/json_rpc'
+
+    rez = None
+    psi_log_info(request.url)
+    psi_log_info("POST: %s" % request.POST.dict)
+    url = DEMON_URL  + '/json_rpc'
+
+    try:
+        rpc_input = {
+            "method": 'getlastblockheader',
+#            "params": {},
+            }
+        headers = {'content-type': 'application/json'}
+        rpc_input.update({"jsonrpc": "2.0", "id": "0"})
+        response = requests.post(
+            url,
+            data=json.dumps(rpc_input),
+            headers=headers)
+    except:
+        print('No connect or other error')
+        pass
+
+    # make json dict with response
+    rez = response.json()
+    print (rez)
+
+    if rez is not None:
+        out = 'get_lastblockheader OK'
+        success = True
+        error = "0"
+    else:
+        out = 'get_lastblockheader error'
+        error = 'get_lastblockheader error'
+        success = False
+    rez = {"result": rez, "msg": out, "error":error, "success":success}
+    return (json.dumps(rez, indent=4))
 
 
 @app.route('/hello/:name')

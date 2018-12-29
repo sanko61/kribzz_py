@@ -6,7 +6,7 @@
 """
 import requests
 import json
-from kribbz_emu import get_blockcount, get_blockhash
+from kribbz_emu import get_blockcount, get_blockhash, get_lastblockheader
 
 
 if __name__ == "__main__":
@@ -24,4 +24,12 @@ if __name__ == "__main__":
     print (r)
 
     r = get_blockhash(-1)
+    print (r)
+
+    print("==============================================")
+    r = get_lastblockheader()
+    print (r)
+
+    print("==============================================")
+    r = get_lastblockheader()
     print (r)
