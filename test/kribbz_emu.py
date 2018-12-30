@@ -250,6 +250,11 @@ if __name__ == "__main__":
         str_amount = '%.8f' % amount
 
 
+    amount = 857453159.06848640
+    #        857453159 06800000
+    str_amount = str(amount)
+    if str_amount.find("e") != -1:
+        str_amount = '%.8f' % amount
 
     int_amount = int(get_amount(amount))
     print(int_amount)

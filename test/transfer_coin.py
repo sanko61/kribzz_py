@@ -24,7 +24,8 @@ if __name__ == "__main__":
 
     tx_id = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 #    r2 = transfer_coin(amnt=0.00000001, dst = "ckbzz6v3RFwV3s5je4PzcDGTZdsHy5Dg13dCrXwYDctYQi1UXYd3jVDPAfNHJmrSxx4TvMnh1pVUUNudRrqXEL7D46nY8D4Virp" , transactionId = tx_id)
-    r2 = transfer_coin(amnt=857453159.06848640, dst = "ckbzzBUC8KrZduCS9svqE7B1FvqBCpV2CBqkrLtqn6JmFHF9qQXyiE1Xf1aTd9YT6nbfqwZAhr5inGZVjZcdVVzSHPthTWMeNpV" , transactionId = tx_id)  #kribbz_b
+    r2 = transfer_coin(amnt=857477659.06, dst = "ckbzzBUC8KrZduCS9svqE7B1FvqBCpV2CBqkrLtqn6JmFHF9qQXyiE1Xf1aTd9YT6nbfqwZAhr5inGZVjZcdVVzSHPthTWMeNpV" , transactionId = tx_id)  #kribbz_b
+
     print (r2)
 
 
