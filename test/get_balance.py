@@ -33,8 +33,8 @@ if __name__ == "__main__":
     r2 = get_balance("walletK2")
     print ("walletK2 = " + str(r2["result"]) )
 
-    r2 = get_balance("kribbz_b")
-    print ("kribbz_b = " + str(r2["result"]) )
+    r2 = get_balance("kribbz2")
+    print ("kribbz2 = " + str(r2["result"]) )
 
     r2 = get_balance("kribbz_wallet")
     print ("kribbz_wallet = " + str( r2["result"]) )
