@@ -13,6 +13,6 @@ if __name__ == "__main__":
     r1 = search_kribbz(w_name="wallet22", pwd="Password12345", stateCode="CA", zipCode="90210" )
     print (r1)
 
-    print ("wallet23:==========================================================================")
-    r1 = search_kribbz(w_name="wallet23", pwd="Password12345", stateCode="CA", zipCode="90210" )
-    print (r1)
+#    print ("wallet23:==========================================================================")
+#    r1 = search_kribbz(w_name="wallet23", pwd="Password12345", stateCode="CA", zipCode="90210" )
+#    print (r1)

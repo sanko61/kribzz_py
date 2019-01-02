@@ -25,7 +25,7 @@ if __name__ == "__main__":
 
     tx_id = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 #    r2 = transfer_coin(amnt=0.00000001, dst = "ckbzz6v3RFwV3s5je4PzcDGTZdsHy5Dg13dCrXwYDctYQi1UXYd3jVDPAfNHJmrSxx4TvMnh1pVUUNudRrqXEL7D46nY8D4Virp" , transactionId = tx_id)
-    r2 = transfer_coin(amnt=0.00000001, dst = "ckbzz9ntUJj4mx3j75nAss3CzvCGXASnYTejDexmfC7k6f4XLqsMJUKN7i84SEz6CTR9LM4ggBMRUgXBHhAtUAgtCvWzv8dGjPr", wal_name = "kribbz2" , transactionId = tx_id)  #wallet24
+    r2 = transfer_coin(amnt=0.00000001, dst = "ckbzz9ntUJj4mx3j75nAss3CzvCGXASnYTejDexmfC7k6f4XLqsMJUKN7i84SEz6CTR9LM4ggBMRUgXBHhAtUAgtCvWzv8dGjPr", wal_name = "kribbz2" , transactionId = tx_id)  #wallet22
 
     print (r2)
 
