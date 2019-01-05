@@ -387,6 +387,7 @@ def transfer_coin():
     wallet = None
     pwd =  None
     fee = 100
+    mixin = 0
     try:
         kr_amnt = parse_request("transfer")
         for key,val in kr_data.items():
@@ -395,6 +396,7 @@ def transfer_coin():
         amnt = kr_amnt["amount"]
         d_address = kr_amnt["destination_address"]
         fee = kr_amnt["fee"]
+        mixin = kr_amnt["mixin"]
     except Exception as errtxt:
         psi_log_error(str(errtxt))
         pass
@@ -490,7 +492,7 @@ def transfer_coin():
                   "amount": int_amount}]
 
     # using given mixin
-    mixin = 0
+    # mixin = 0
 
     # get some random payment_id
     payment_id = get_payment_id()

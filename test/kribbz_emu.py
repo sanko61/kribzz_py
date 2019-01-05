@@ -74,7 +74,7 @@ def get(action):
         raise Exception403(r.json['dsc'].encode("utf8"))
 
 
-def transfer_coin(amnt=22.2222, dst="ckbzz6v3RFwV3s5je4PzcDGTZdsHy5Dg13dCrXwYDctYQi1UXYd3jVDPAfNHJmrSxx4TvMnh1pVUUNudRrqXEL7D46nY8D4Virp", wal_name = "kribbz_wallet", pwd="Password12345", transactionId ="643427363", fee=500):
+def transfer_coin(amnt=22.2222, dst="ckbzz6v3RFwV3s5je4PzcDGTZdsHy5Dg13dCrXwYDctYQi1UXYd3jVDPAfNHJmrSxx4TvMnh1pVUUNudRrqXEL7D46nY8D4Virp", wal_name = "kribbz_wallet", pwd="Password12345", transactionId ="643427363", fee=500, mixin=0):
     """Send coin
       Returns:
          dict.  The JSON response ::
@@ -106,6 +106,7 @@ def transfer_coin(amnt=22.2222, dst="ckbzz6v3RFwV3s5je4PzcDGTZdsHy5Dg13dCrXwYDct
              # "ckbzz9ntUJj4mx3j75nAss3CzvCGXASnYTejDexmfC7k6f4XLqsMJUKN7i84SEz6CTR9LM4ggBMRUgXBHhAtUAgtCvWzv8dGjPr"
              # "ckbzz7dYVt6T4sBWhjp8wqQUMgoE8hWyfFCcBjjdLrzEdJU9SQsXjm73rb4VzZt7RxGzuLCAs4ZtQQMJzeELHP841TbYDt4Rm9V"  wal6
               "fee": fee,
+              "mixin": mixin,
               },
 #          "smart_contract": {
 #              "agent_signature":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
