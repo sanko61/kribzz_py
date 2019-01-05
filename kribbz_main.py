@@ -386,7 +386,7 @@ def transfer_coin():
     kr_amnt = None
     wallet = None
     pwd =  None
-    fee = 0.00
+    fee = 100
     try:
         kr_amnt = parse_request("transfer")
         for key,val in kr_data.items():
