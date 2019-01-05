@@ -386,7 +386,7 @@ def transfer_coin():
     kr_amnt = None
     wallet = None
     pwd =  None
-
+    fee = 0.00
     try:
         kr_amnt = parse_request("transfer")
         for key,val in kr_data.items():
@@ -394,6 +394,7 @@ def transfer_coin():
 #            psi_log_debug( str(d) + ' = ' + str(val))
         amnt = kr_amnt["amount"]
         d_address = kr_amnt["destination_address"]
+        fee = kr_amnt["fee"]
     except Exception as errtxt:
         psi_log_error(str(errtxt))
         pass
@@ -515,6 +516,7 @@ def transfer_coin():
 #                   "payment_id" : payment_id,
                    "kribbz_info": kribbz_info,
                    "get_tx_key": True,
+                   "fee": fee,
                    },
         }
     # add standard rpc values
