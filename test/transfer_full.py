@@ -29,7 +29,7 @@ if __name__ == "__main__":
         "owner_pkey":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
     }
     transfer ={
-    "amount": 4.4,
+    "amount": 0.5,
         "destination_address": "ckbzz6v3RFwV3s5je4PzcDGTZdsHy5Dg13dCrXwYDctYQi1UXYd3jVDPAfNHJmrSxx4TvMnh1pVUUNudRrqXEL7D46nY8D4Virp",  # wallet24
                     # "ckbzz6v3RFwV3s5je4PzcDGTZdsHy5Dg13dCrXwYDctYQi1UXYd3jVDPAfNHJmrSxx4TvMnh1pVUUNudRrqXEL7D46nY8D4Virp",  # wallet24
                     #  "ckbzzAbqtqhcrN89awPysMBjQLZwAsVvGC8yFaa5hJ1E6cY6oHEsJyY6rjLCuXWRc1dWCXZSCecGMWUPYrpJPHYP9LkKo5Q8QNz", #wallet23
@@ -40,6 +40,8 @@ if __name__ == "__main__":
         "fee": 0100000,
     }
 
-    r2 = transfer_full(transfer, kribbz, wal_name = "kribbz2" )
+#    r2 = transfer_full(transfer, kribbz, wal_name = "kribbz2" )
+    r2 = transfer_full(transfer, kribbz={}, wal_name = "kribbz2" )
+
     print (r2)
 
