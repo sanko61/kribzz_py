@@ -126,6 +126,24 @@ def transfer_coin(amnt=22.2222, dst="ckbzz6v3RFwV3s5je4PzcDGTZdsHy5Dg13dCrXwYDct
     return rep
 
 
+def transfer_full(transfer, kribbz={}, wal_name = "kribbz_wallet", pwd="Password12345"):
+    """Send coin
+      Returns:
+         dict.  The JSON response ::
+      """
+    rep = post('transfer_coin',
+        { "kribbz": kribbz,
+          "transfer": transfer,
+          "wallet":
+              {
+                  "password":pwd,
+                  "wallet_name": wal_name,
+                  },
+          },
+    )
+    return rep
+
+
 def get_balance(w_name="wal22", pwd="Password12345"):
     rep = post('get_balance',
         {"wallet":
