@@ -126,21 +126,33 @@ def transfer_coin(amnt=22.2222, dst="ckbzz6v3RFwV3s5je4PzcDGTZdsHy5Dg13dCrXwYDct
     return rep
 
 
-def transfer_full(transfer, kribbz={}, wal_name = "kribbz_wallet", pwd="Password12345"):
+def transfer_full(transfer, kribbz= None, wal_name = "kribbz_wallet", pwd="Password12345"):
     """Send coin
       Returns:
          dict.  The JSON response ::
       """
-    rep = post('transfer_coin',
-        { "kribbz": kribbz,
-          "transfer": transfer,
-          "wallet":
-              {
-                  "password":pwd,
-                  "wallet_name": wal_name,
-                  },
-          },
-    )
+    if kribbz is None:
+        rep = post('transfer_coin',
+            {
+              "transfer": transfer,
+              "wallet":
+                  {
+                      "password":pwd,
+                      "wallet_name": wal_name,
+                      },
+              },
+        )
+    else:
+        rep = post('transfer_coin',
+            { "kribbz": kribbz,
+              "transfer": transfer,
+              "wallet":
+                  {
+                      "password":pwd,
+                      "wallet_name": wal_name,
+                      },
+              },
+        )
     return rep
 
 
