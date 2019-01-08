@@ -390,8 +390,8 @@ def transfer_coin():
     mixin = 0
     try:
         kr_amnt = parse_request("transfer")
-        for key,val in kr_data.items():
-            d = kr_data[key]
+#        for key,val in kr_data.items():
+#            d = kr_data[key]
 #            psi_log_debug( str(d) + ' = ' + str(val))
         amnt = kr_amnt["amount"]
         d_address = kr_amnt["destination_address"]
@@ -496,31 +496,29 @@ def transfer_coin():
 
     # get some random payment_id
     payment_id = get_payment_id()
-    kr1 =  kr_data
-#    kr1 =    {
-#        "transactionId":"643427363","streeAddress":"700 Rodeo Drive","cityName":"Beverly Hills",
-#        "stateCode":"CA","zipCode":"90210","latitude":"34.079678","longitude":"-118.413515",
-#        "transactionDateTime":"1523855778",
-#        "transactionTotal":"9975000.00",
-#        "sellerName":"John Clark",
-#        "buyerName":"Emily Stevens",
-#        }
-
-    kribbz_info =json .dumps(kr1)
-    #    kribbz_info ='01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789'
-#    kribbz_info ='test_transfer'
-    print(kribbz_info)
-    # simplewallet' procedure/method to call
-    rpc_input = {
+    if kr_data:
+        kr1 =  kr_data
+        kribbz_info =json .dumps(kr1)
+        # simplewallet' procedure/method to call
+        rpc_input = {
+            "method": "transfer",
+            "params": {"destinations": recipents,
+                       "mixin": mixin,
+                       "kribbz_info": kribbz_info,
+                       "get_tx_key": True,
+                       "fee": fee,
+                       },
+            }
+    else:
+        rpc_input = {
         "method": "transfer",
         "params": {"destinations": recipents,
                    "mixin": mixin,
-#                   "payment_id" : payment_id,
-                   "kribbz_info": kribbz_info,
                    "get_tx_key": True,
                    "fee": fee,
                    },
         }
+
     # add standard rpc values
     rpc_input.update({"jsonrpc": "2.0", "id": "0"})
     try:
