@@ -40,9 +40,9 @@ if __name__ == "__main__":
         "fee": 0100000,
     }
 
-#    r2 = transfer_full(transfer, kribbz, wal_name = "kribbz2" )
+    r2 = transfer_full(transfer, kribbz, wal_name = "kribbz2" )
 #    r2 = transfer_full(transfer, kribbz={}, wal_name = "kribbz2" )
-    r2 = transfer_full(transfer, kribbz=None, wal_name = "kribbz2" )
+#    r2 = transfer_full(transfer, kribbz=None, wal_name = "kribbz2" )
 
     print (r2)
 
