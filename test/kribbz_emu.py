@@ -187,6 +187,16 @@ def search_kribbz(w_name="wal22", pwd="Password12345", stateCode="CA", zipCode="
     return rep
 
 
+def search_by_filter(w_name="wal22", pwd="Password12345", filter={"stateCode":"CA", "zipCode":"90210"}):
+    rep = post('search_kribbz',
+        {"wallet":
+             {"password":pwd,"wallet_name":w_name,},  # "wallet7"
+         "filter": filter,
+        },
+    )
+    return rep
+
+
 def get_payments():
     rep = post('get_payments',{}, )
     return rep
