@@ -18,6 +18,10 @@ if __name__ == "__main__":
 #    r1 = search_kribbz(w_name="wallet23", pwd="Password12345", stateCode="CA", zipCode="90210" )
 #    print (r1)
 
+    kr = { "streeAddress":"700 Rodeo Drive"}
+    s_kr = json.dumps (kr)
+    print(s_kr)
+
     print ("wallet24:==========================================================================")
     r1 = search_kribbz(w_name="wallet24", pwd="Password12345", stateCode="CA", zipCode="90210" )
     print (r1)
