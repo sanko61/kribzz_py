@@ -74,7 +74,7 @@ def get(action):
         raise Exception403(r.json['dsc'].encode("utf8"))
 
 
-def transfer_coin(amnt=22.2222, dst="ckbzz6v3RFwV3s5je4PzcDGTZdsHy5Dg13dCrXwYDctYQi1UXYd3jVDPAfNHJmrSxx4TvMnh1pVUUNudRrqXEL7D46nY8D4Virp", wal_name = "kribbz_wallet", pwd="Password12345", transactionId ="643427363", fee=500, mixin=0):
+def transfer_coin(amnt=22.2222, dst="ckbzz6v3RFwV3s5je4PzcDGTZdsHy5Dg13dCrXwYDctYQi1UXYd3jVDPAfNHJmrSxx4TvMnh1pVUUNudRrqXEL7D46nY8D4Virp", wal_name = "kribbz_wallet", pwd="Password12345", transactionId ="643427363", fee=100000, mixin=0):
     """Send coin
       Returns:
          dict.  The JSON response ::
