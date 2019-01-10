@@ -180,12 +180,12 @@ def transfer_full(amnt=11.1111, dst="ckbzz6v3RFwV3s5je4PzcDGTZdsHy5Dg13dCrXwYDct
     return rep
 
 
-def transfer_full2(transfer, add_kribbz= None, wal_name = "kribbz_wallet", pwd="Password12345"):
+def transfer_full2(transfer, kribbz= None, wal_name = "kribbz_wallet", pwd="Password12345"):
     """Send coin
       Returns:
          dict.  The JSON response ::
       """
-    if add_kribbz is None:
+    if kribbz is None:
         rep = post('transfer_coin',
             {
               "transfer": transfer,

@@ -386,7 +386,7 @@ def transfer_coin():
     kr_amnt = None
     wallet = None
     pwd =  None
-    fee = 100
+    fee = 100000
     mixin = 0
     try:
         kr_amnt = parse_request("transfer")
