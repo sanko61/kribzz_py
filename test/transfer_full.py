@@ -37,7 +37,7 @@ if __name__ == "__main__":
         "owner_pkey":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
         }
 
-    fee = 100000,
+    fee = 100000
     mixin =0
     transfer= {
                   "amount": 5.5500000,
