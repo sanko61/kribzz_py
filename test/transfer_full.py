@@ -37,6 +37,7 @@ if __name__ == "__main__":
                     # "ckbzz9ntUJj4mx3j75nAss3CzvCGXASnYTejDexmfC7k6f4XLqsMJUKN7i84SEz6CTR9LM4ggBMRUgXBHhAtUAgtCvWzv8dGjPr"
                     # "ckbzz7dYVt6T4sBWhjp8wqQUMgoE8hWyfFCcBjjdLrzEdJU9SQsXjm73rb4VzZt7RxGzuLCAs4ZtQQMJzeELHP841TbYDt4Rm9V"  wal6
         "fee": 100000,
+        "mixin": 0,
     }
     r2 = transfer_full(transfer, kribbz, wal_name = "kribbz2" )
 #    r2 = transfer_full(transfer, kribbz={}, wal_name = "kribbz2" )
