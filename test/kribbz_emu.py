@@ -193,7 +193,7 @@ def transfer_full2(transfer, kribbz= None, wal_name = "kribbz_wallet", pwd="Pass
                   {
                       "password":pwd,
                       "wallet_name": wal_name,
-                      },
+                      }
               }
         )
     else:
@@ -204,7 +204,7 @@ def transfer_full2(transfer, kribbz= None, wal_name = "kribbz_wallet", pwd="Pass
                   {
                       "password":pwd,
                       "wallet_name": wal_name,
-                      },
+                      }
               }
         )
     return rep
