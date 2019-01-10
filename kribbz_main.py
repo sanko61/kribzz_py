@@ -472,6 +472,7 @@ def transfer_coin():
 #    destination_address = "ckbzz7dYVt6T4sBWhjp8wqQUMgoE8hWyfFCcBjjdLrzEdJU9SQsXjm73rb4VzZt7RxGzuLCAs4ZtQQMJzeELHP841TbYDt4Rm9V" # wal6
 
     # amount of xmr to send
+    print("amnt=", amnt)
     amount = float(amnt)
 #    amount = 12.54321
 
