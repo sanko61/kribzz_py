@@ -740,7 +740,7 @@ def search_kribbz():
         success = False
 
     print('cnt found=' + str(cnt))
-    rez2 = {"transfers": rez_output, "msg": out, "error":error, "success":success}
+    rez2 = {"transfers": rez_output, "msg": out, "error":error, "success":success, "cnt": cnt}
 
     print(rez2)
     return (json.dumps(rez2, indent=4))
