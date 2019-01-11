@@ -11,7 +11,13 @@ from kribbz_emu import get_transfers
 if __name__ == "__main__":
     print ("==wallet22========================================")
     r1 = get_transfers(w_name="wallet22", pwd="Password12345")
-    print (r1)
+#    print (r1)
+    trxs = r1['result']["result"]["transfers"]
+    print(trxs.len)
+    ii = 1
+    for tr in trxs:
+        print(ii, tr["fee"], tr["time"], tr["transactionHash"], tr[ "amount"], tr["output"])
+        ii += 1
 
 #    print ("==wallet23========================================")
 #    r1 = get_transfers(w_name="wallet23", pwd="Password12345")
