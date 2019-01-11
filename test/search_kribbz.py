@@ -68,19 +68,66 @@ if __name__ == "__main__":
     print(r2)
     print ("cnt=", r2["cnt"])
 
-#
-#"kribbz": {
-#    "transactionId":transactionId, "streeAddress":"700 Rodeo Drive", "cityName":"Beverly Hills",
-#    "stateCode":"CA","zipCode":"90210","latitude":"34.079678","longitude":"-118.413515",
-#    "transactionDateTime":"1523855778",
-#    "transactionTotal":"9975000.00",
-#    "sellerName":"John Clark",
-#    "buyerName":"Emily Stevens",
-#    "agent_signature":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
-#    "agent_pkey":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
-#    "investor_signature":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
-#    "investor_pkey":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
-#    "owner_signature":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
-#    "owner_pkey":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
-#
-#    }
+    time.sleep(2)
+    print ("==========================================================================")
+    r2 = search_by_filter(w_name="wallet24", pwd="Password12345",
+        filter={ "streeAddress":"700RodeoDrive", "cityName":"BeverlyHills", "latitude":"34.079678", "longitude":"-118.413515",
+                 "transactionDateTime":"1523855778", "transactionTotal":"9975000.00", "sellerName":"JohnClark", "buyerName":"EmilyStevens"
+        })
+    print(r2)
+    print ("cnt=", r2["cnt"])
+
+
+    time.sleep(2)
+    print ("==========================================================================")
+    r2 = search_by_filter(w_name="wallet24", pwd="Password12345",
+        filter={ "streeAddress":"700RodeoDrive", "cityName":"BeverlyHills", "latitude":"34.079678", "longitude":"-118.413515",
+                 "transactionDateTime":"1523855778", "transactionTotal":"9975000.00", "sellerName":"JohnClark", "buyerName":"EmilyStevens",
+                 "agent_signature":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+                 "agent_pkey":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+        })
+    print(r2)
+    print ("cnt=", r2["cnt"])
+
+    time.sleep(2)
+    print ("==========================================================================")
+    r2 = search_by_filter(w_name="wallet24", pwd="Password12345",
+        filter={ "streeAddress":"700RodeoDrive", "cityName":"BeverlyHills", "latitude":"34.079678", "longitude":"-118.413515",
+                 "transactionDateTime":"1523855778", "transactionTotal":"9975000.00", "sellerName":"JohnClark", "buyerName":"EmilyStevens",
+                 "agent_signature":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+                 "agent_pkey":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+                 "investor_signature":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+                 "investor_pkey":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+                 })
+    print(r2)
+    print ("cnt=", r2["cnt"])
+
+    time.sleep(2)
+    print ("==========================================================================")
+    r2 = search_by_filter(w_name="wallet24", pwd="Password12345",
+        filter={ "streeAddress":"700RodeoDrive", "cityName":"BeverlyHills", "latitude":"34.079678", "longitude":"-118.413515",
+                 "transactionDateTime":"1523855778", "transactionTotal":"9975000.00", "sellerName":"JohnClark", "buyerName":"EmilyStevens",
+                 "agent_signature":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+                 "agent_pkey":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+                 "investor_signature":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+                 "investor_pkey":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+                 "owner_signature":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+                 "owner_pkey":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+                 })
+    print(r2)
+    print ("cnt=", r2["cnt"])
+
+    time.sleep(2)
+    print ("==========================================================================")
+    r2 = search_by_filter(w_name="kribbz2", pwd="Password12345",
+        filter={ "streeAddress":"700RodeoDrive", "cityName":"BeverlyHills", "latitude":"34.079678", "longitude":"-118.413515",
+                 "transactionDateTime":"1523855778", "transactionTotal":"9975000.00", "sellerName":"JohnClark", "buyerName":"EmilyStevens",
+                 "agent_signature":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+                 "agent_pkey":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+                 "investor_signature":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+                 "investor_pkey":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+                 "owner_signature":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+                 "owner_pkey":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+                 })
+    print(r2)
+    print ("cnt=", r2["cnt"])
