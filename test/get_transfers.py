@@ -12,7 +12,7 @@ if __name__ == "__main__":
     print ("==wallet22========================================")
     r1 = get_transfers(w_name="wallet22", pwd="Password12345")
 #    print (r1)
-    rez = json.loads(r1)
+    rez = json.loads(r1['result'])
     try:
         transfers = rez['result']['transfers']
     except   Exception as ex1:
