@@ -26,7 +26,7 @@ if __name__ == "__main__":
     r1 = search_kribbz(w_name="wallet24", pwd="Password12345", stateCode="CA", zipCode="90210" )
     print (r1)
     print ("cnt=", r1["cnt"])
-    transfers = r1
+    transfers = r1['transfers']
     ii = 0
     for tr in transfers:
         print(ii, tr["fee"], tr["time"], tr["transactionHash"], tr[ "amount"], tr["output"])
