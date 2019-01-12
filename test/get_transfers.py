@@ -12,14 +12,22 @@ if __name__ == "__main__":
     print ("==wallet22========================================")
     r1 = get_transfers(w_name="wallet22", pwd="Password12345")
 #    print (r1)
-    trxs = r1['result']["result"]["transfers"]
-    print(trxs.len)
-    ii = 1
-    for tr in trxs:
-        print(ii, tr["fee"], tr["time"], tr["transactionHash"], tr[ "amount"], tr["output"])
-        ii += 1
+    rez = json.loads(r1)
+    try:
+        transfers = rez['result']['transfers']
+    except   Exception as ex1:
+        transfers = None
 
-#    print ("==wallet23========================================")
+    rez_output = []
+    ii = 0
+    if transfers is not None:
+        for tr in transfers:
+            print(ii, tr["fee"], tr["time"], tr["transactionHash"], tr[ "amount"], tr["output"])
+            ii += 1
+
+
+
+    #    print ("==wallet23========================================")
 #    r1 = get_transfers(w_name="wallet23", pwd="Password12345")
 #    print (r1)
 #
