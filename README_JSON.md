@@ -38,7 +38,7 @@ Output:
     "error": "0"
 }
 Test:
-curl  -H "Content-Type: application/json" --request POST -d '{"wallet":{ "password":"Password12345","wallet_name":"wallet7"}}' "http://52.13.195.226:8804/get_balance"
+curl  -H "Content-Type: application/json" --request POST -d '{"wallet":{ "password":"Password12345","wallet_name":"wallet22"}}' "http://52.13.195.226:8804/get_balance"
 
 
 3. get_transfers
@@ -60,7 +60,7 @@ u'result': u'{"jsonrpc": "2.0", "id": "0",
 u'success': True, u'error': u'0'}
 
 Test:
-curl  -H "Content-Type: application/json" --request POST -d '{"wallet":{ "password":"Password12345","wallet_name":"wallet7"}}' "http://52.13.195.226:8804/get_transfers"
+curl  -H "Content-Type: application/json" --request POST -d '{"wallet":{ "password":"Password12345","wallet_name":"wallet22"}}' "http://52.13.195.226:8804/get_transfers"
 
 
 4. transfer_coin
@@ -93,6 +93,34 @@ Input:{
 
 Output:
 {u'tx_hash': u'4c2b6c7fcd454b7c950f48771e83314728c502b5db52a05086132028ca62574e', u'msg': u'coin transfer successful', u'success': True, u'error': u'0'}
+
+Test:
+curl  -H "Content-Type: application/json" --request POST -d '
+{
+ "kribbz": {
+        "transactionId":"643427363", "streeAddress":"700 Rodeo Drive", "cityName":"Beverly Hills",
+        "stateCode":"CA","zipCode":"90210","latitude":"34.079678","longitude":"-118.413515",
+        "transactionDateTime":"1523855778",
+        "transactionTotal":"9975000.00",
+        "sellerName":"John Clark",
+        "buyerName":"Emily Stevens",
+        "agent_signature":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+        "agent_pkey":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+        "investor_signature":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+        "investor_pkey":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+        "owner_signature":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+        "owner_pkey":"ckbzzBGZpWBZiPyQmxN3NCK8DJ8S37Vhxb69a9pbYXgMAwKKPDGeZ93aZgSXfX1E3GMEbk6tgLGPK8gDAeGquLmASXKvRim7pzN",
+        },
+ "transfer": {
+              "amount": 3.3300000,
+              "destination_address": "ckbzz9ntUJj4mx3j75nAss3CzvCGXASnYTejDexmfC7k6f4XLqsMJUKN7i84SEz6CTR9LM4ggBMRUgXBHhAtUAgtCvWzv8dGjPr",
+              "fee": 100000,
+   },
+ "wallet":{ "password":"Password12345","wallet_name":"kribbz2"}}
+}
+' "http://52.13.195.226:8804/transfer_coin"
+
+
 
 
 5. get_address
@@ -157,7 +185,12 @@ Get  wallet height
     "error": "0"
 }
 Test:
- curl  -H "Content-Type: application/json" --request POST -d '{"wallet":{ "password":"Password12345","wallet_name":"wallet7"},"filter":{"stateCode":"CA", "zipCode":"90210"}}' "http://52.13.195.226:8804/search_kribbz"
+ curl  -H "Content-Type: application/json" --request POST -d '{"wallet":{ "password":"Password12345","wallet_name":"wallet24"},
+ "filter":{"stateCode":"CA", "zipCode":"90210"}}' "http://52.13.195.226:8804/search_kribbz"
+
+ curl  -H "Content-Type: application/json" --request POST -d '{"wallet":{ "password":"Password12345","wallet_name":"wallet24"},
+ "filter":{"streeAddress":"700RodeoDrive", "cityName":"BeverlyHills", "latitude":"34.079678", "longitude":"-118.413515", "transactionDateTime":"1523855778", "transactionTotal":"9975000.00", "sellerName":"JohnClark", "buyerName":"EmilyStevens"}}' "http://52.13.195.226:8804/search_kribbz"
+
 
 
 8. get_transaction
