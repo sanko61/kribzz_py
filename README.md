@@ -145,7 +145,8 @@ return:
 curl  -H 'Content-Type: application/json' --request POST -d '{"jsonrpc":"2.0","id":"0","method":"on_getblockhash","params":[21]}' 'http://127.0.0.1:23926/json_rpc'
 return:
 {"id":"0","jsonrpc":"2.0","result":"7dfb5b31a3e9e04f389a7db3c8f7d75c37db46fc73383bc4f157b300f9f3753c"}root@ip-172-31-20-249:~/kribbz_v1/build#
-
+or return an error:
+{"error":{"code":-32603,"message":"JsonValue type is not INTEGER"}
 
 3. getcurrencyid
 curl  -H 'Content-Type: application/json' --request POST -d '{"jsonrpc":"2.0","id":"0","method":"getcurrencyid","params":[]}' 'http://127.0.0.1:23926/json_rpc'

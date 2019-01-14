@@ -1014,9 +1014,14 @@ def get_blockhash():
     print (rez)
 
     if rez is not None:
-        out = 'get_blockhash OK'
-        success = True
-        error = "0"
+        if "error" in rez:
+            out = 'get_blockhash error'
+            error = 'get_blockhash error'
+            success = False
+        else:
+            out = 'get_blockhash OK'
+            success = True
+            error = "0"
     else:
         out = 'get_blockhash error'
         error = 'get_blockhash error'
