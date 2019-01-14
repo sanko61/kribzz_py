@@ -925,7 +925,7 @@ def get_transaction():
     # make json dict with response
     rez = response.json()
 
-    if rez is not None:
+    if rez is not None and "status" in rez and rez["status"] == "OK":
         out = 'get_transaction OK'
         success = True
         error = "0"
