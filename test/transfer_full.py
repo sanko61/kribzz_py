@@ -41,13 +41,14 @@ if __name__ == "__main__":
     mixin =0
     transfer= {
                   "amount": 5.5500000,
-                  "destination_address": "ckbzz6v3RFwV3s5je4PzcDGTZdsHy5Dg13dCrXwYDctYQi1UXYd3jVDPAfNHJmrSxx4TvMnh1pVUUNudRrqXEL7D46nY8D4Virp",  # wallet24
+                  "destination_address": "ckbzzBcQbudNMwNKL99KZeKUTYa1Txjy9Wj1tDuL4s4Tgv8Hmy71Y1LinLydmDptXaZURnNt6jAAcRiwaTZyL1zV3XRwM5RCrM2",  # wallet30
                   # "ckbzz6v3RFwV3s5je4PzcDGTZdsHy5Dg13dCrXwYDctYQi1UXYd3jVDPAfNHJmrSxx4TvMnh1pVUUNudRrqXEL7D46nY8D4Virp",  # wallet24
                   #  "ckbzzAbqtqhcrN89awPysMBjQLZwAsVvGC8yFaa5hJ1E6cY6oHEsJyY6rjLCuXWRc1dWCXZSCecGMWUPYrpJPHYP9LkKo5Q8QNz", #wallet23
                   # "ckbzz9ntUJj4mx3j75nAss3CzvCGXASnYTejDexmfC7k6f4XLqsMJUKN7i84SEz6CTR9LM4ggBMRUgXBHhAtUAgtCvWzv8dGjPr"  #wallet22
                   # "ckbzzAkpo6cY3hRGrVhyYFNaH9uowjUDhVwN2APDo8TRjWsBewnM39i5MXxJmnDAJkbYFVA6rxMAuTSACbZbAMwT5FzK3sQnLro",  # wallet7
                   # "ckbzz9ntUJj4mx3j75nAss3CzvCGXASnYTejDexmfC7k6f4XLqsMJUKN7i84SEz6CTR9LM4ggBMRUgXBHhAtUAgtCvWzv8dGjPr"
                   # "ckbzz7dYVt6T4sBWhjp8wqQUMgoE8hWyfFCcBjjdLrzEdJU9SQsXjm73rb4VzZt7RxGzuLCAs4ZtQQMJzeELHP841TbYDt4Rm9V"  wal6
+                  # "ckbzzBcQbudNMwNKL99KZeKUTYa1Txjy9Wj1tDuL4s4Tgv8Hmy71Y1LinLydmDptXaZURnNt6jAAcRiwaTZyL1zV3XRwM5RCrM2"  wallet30  -  alex PC
                   "fee": fee,
                   "mixin": mixin,
                   }
